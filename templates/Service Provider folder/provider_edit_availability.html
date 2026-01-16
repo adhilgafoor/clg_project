@@ -1,0 +1,99 @@
+{#{% extends 'Service Provider folder/service_provider_home.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Avilability Status</h1>#}
+{##}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{##}
+{#         <div>#}
+{#            <label for="category">Service Name:</label>#}
+{#            <select name="service">#}
+{#                {% for i in gh %}#}
+{#                <option value="{{ i.id }}" {% if i.id == data.SERVICE_id %}selected{% endif %}>{{ i.Servicename }}</option>#}
+{#                {% endfor %}#}
+{#            </select>#}
+{#        </div>#}
+{##}
+{##}
+{#         <div>#}
+{#            <label for="category">Service Status:</label>#}
+{#            <select name="status">#}
+{##}
+{#           <option value="Open" {% if data.Status == "Open" %}selected{% endif %}>Open</option>#}
+{#            <option value="Closed" {% if data.Status == "Closed" %}selected{% endif %}>Closed</option>#}
+{#            <option value="24/7" {% if data.Status == "24/7" %}selected{% endif %}>24/7</option>#}
+{#            </select>#}
+{#        </div>#}
+{##}
+{#        <div>#}
+{#            <label for="time">From time:</label>#}
+{#            <input type="time" value="{{ data.Fromtime }}" id="name" name="ftime" required>#}
+{#        </div>#}
+{#     <div>#}
+{#            <label for="ttime">To time:</label>#}
+{#            <input type="time" value="{{ data.Totime }}" id="name" name="ttime" required>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div>#}
+{#            <button type="submit">Edit Status</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</body>#}
+{#{% endblock %}#}
+
+{% extends 'Service Provider folder/service_provider_home.html' %}
+{% block body %}
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
+    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 30px;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Edit Availability Status</h1>
+
+        <form method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+            {% csrf_token %}
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="service" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">Service Name:</label>
+                <select name="service" id="service" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+                    {% for i in gh %}
+                    <option value="{{ i.id }}" {% if i.id == data.SERVICE_id %}selected{% endif %}>{{ i.Servicename }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="status" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">Service Status:</label>
+                <select name="status" id="status" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+                    <option value="Open" {% if data.Status == "Open" %}selected{% endif %}>Open</option>
+                    <option value="Closed" {% if data.Status == "Closed" %}selected{% endif %}>Closed</option>
+                    <option value="24/7" {% if data.Status == "24/7" %}selected{% endif %}>24/7</option>
+                </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="ftime" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">From Time:</label>
+                <input type="time" id="ftime" name="ftime" value="{{ data.Fromtime }}" required style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="ttime" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">To Time:</label>
+                <input type="time" id="ttime" name="ttime" value="{{ data.Totime }}" required style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" style="padding: 12px 24px; background-color: #4f46e5; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; width: 100%; max-width: 200px;">Edit Status</button>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        select:focus, input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        button:hover {
+            background-color: #4338ca;
+        }
+    </style>
+</body>
+{% endblock %}

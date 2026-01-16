@@ -1,0 +1,141 @@
+{#{% extends 'Service Provider folder/service_provider_home.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Users</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Date</th>#}
+{#                <th>Review</th>#}
+{#                <th>Rating</th>#}
+{#                <th>Service</th>#}
+{#                <th>User</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Date }}</td>#}
+{#                <td>{{ i.Rating }}</td>#}
+{#                <td>{{ i.Review }}</td>#}
+{#                <td>{{ i.SERVICE.Servicename }}</td>#}
+{#                <td>#}
+{#                    {{ i.USER.Name }}<br>#}
+{#                    {{ i.USER.Email }}<br>#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{% extends 'Service Provider folder/service_provider_home.html' %}
+{% block body %}
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">User Reviews</h1>
+
+        <!-- Search Bar and Date Range Filter -->
+        <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+            <input type="text" id="searchInput" placeholder="Search by Service, Review, Rating, or User..."
+                   style="width: 100%; max-width: 400px; padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none;"
+                   onkeyup="searchTable()">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <label for="fromDate" style="font-size: 14px; color: #374151; font-weight: 500;">From Date:</label>
+                <input type="date" id="fromDate" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+                <label for="toDate" style="font-size: 14px; color: #374151; font-weight: 500;">To Date:</label>
+                <input type="date" id="toDate" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+                <button onclick="searchTable()" style="padding: 10px 20px; background-color: #4f46e5; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s;">Search</button>
+            </div>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <form method="post">
+                {% csrf_token %}
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="background-color: #4f46e5; color: white;">
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">SLNO</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Date</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Review</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Rating</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Service</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">User</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewsTable">
+                            {% for i in data %}
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 12px; color: #374151;">{{ forloop.counter }}</td>
+                                <td style="padding: 12px; color: #374151; white-space: nowrap;" data-date="{{ i.Date|date:'Y-m-d' }}">{{ i.Date }}</td>
+                                <td style="padding: 12px; color: #374151; max-width: 200px;">{{ i.Review }}</td>
+                                <td style="padding: 12px; color: #10b981; font-weight: 500;">{{ i.Rating }}</td>
+                                <td style="padding: 12px; color: #374151; font-weight: 500;">{{ i.SERVICE.Servicename }}</td>
+                                <td style="padding: 12px; color: #374151;">
+                                    <strong>{{ i.USER.Name }}</strong><br>
+                                    {{ i.USER.Email }}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" style="padding: 20px; text-align: center; color: #6b7280;">No reviews found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function searchTable() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const fromDate = new Date(document.getElementById('fromDate').value);
+            const toDate = new Date(document.getElementById('toDate').value);
+            const table = document.getElementById('reviewsTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                // Search in Service Name (index 4), Review (index 2), Rating (index 3), and User Details (index 5)
+                if (cells[2] && cells[3] && cells[4] && cells[5]) {
+                    const serviceText = cells[4].textContent.toLowerCase();
+                    const reviewText = cells[2].textContent.toLowerCase();
+                    const ratingText = cells[3].textContent.toLowerCase();
+                    const userText = cells[5].textContent.toLowerCase();
+                    if (serviceText.includes(input) || reviewText.includes(input) || ratingText.includes(input) || userText.includes(input)) {
+                        match = true;
+                    }
+                }
+
+                // Date range filter
+                if (cells[1] && (fromDate || toDate)) {
+                    const rowDate = new Date(cells[1].getAttribute('data-date'));
+                    if (fromDate && rowDate < fromDate) match = false;
+                    if (toDate && rowDate > toDate) match = false;
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+    </script>
+
+    <style>
+        input:focus, button:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        button:hover {
+            background-color: #4338ca;
+        }
+    </style>
+</body>
+{% endblock %}

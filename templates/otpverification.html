@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTP Verification - Near Live</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'stock-green': '#ff6d00',
+            'stock-light': '#2ecc71',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .bg-energy-pattern {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+        url('/static/stock/fbg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .otp-input {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border: 2px solid #d1d5db;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .otp-input:focus {
+      outline: none;
+      border-color: #27ae60;
+      box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.3);
+    }
+    .otp-input.invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+    }
+    .countdown {
+      font-weight: 600;
+      color: #f59e0b;
+    }
+  </style>
+</head>
+
+<body class="bg-energy-pattern min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md">
+    <!-- Card -->
+    <div class="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-gray-100">
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="w-20 h-20 mx-auto mb-4 bg-stock-green rounded-full flex items-center justify-center text-white text-3xl shadow-lg">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800">Verify Your Email</h2>
+        <p class="text-gray-600 mt-2 text-sm">
+          We've sent a 6-digit code to <span class="font-medium text-stock-green">{{ email }}</span>
+        </p>
+      </div>
+
+      <!-- OTP Form -->
+      <form action="/verifyOtpPost/" method="post" id="otpForm">
+        {% csrf_token %}
+        <input type="hidden" name="email" value="{{ email }}">
+
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-3 text-center">
+            Enter 6-Digit OTP
+          </label>
+          <div class="flex justify-center gap-2">
+            <input type="text" maxlength="1" class="otp-input" data-index="0" />
+            <input type="text" maxlength="1" class="otp-input" data-index="1" />
+            <input type="text" maxlength="1" class="otp-input" data-index="2" />
+            <input type="text" maxlength="1" class="otp-input" data-index="3" />
+            <input type="text" maxlength="1" class="otp-input" data-index="4" />
+            <input type="text" maxlength="1" class="otp-input" data-index="5" />
+          </div>
+          <input type="hidden" name="entered_otp" id="enteredOtp" />
+          <p class="text-red-500 text-xs text-center mt-2 hidden" id="otpError">Invalid OTP</p>
+        </div>
+
+        <!-- Resend Timer -->
+        <div class="text-center mb-6">
+          <p class="text-sm text-gray-600">
+            Didn't receive the code?
+            <a href="#" id="resendLink" class="font-medium text-stock-green hover:underline hidden">
+              Resend OTP
+            </a>
+          </p>
+          <p class="text-sm text-gray-500 mt-1">
+            Resend in <span id="countdown" class="countdown">60</span>s
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full py-3.5 bg-stock-green text-white font-bold rounded-lg hover:bg-stock-light transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+          id="verifyBtn"
+        >
+          <i class="fas fa-check-circle"></i>
+          Verify OTP
+        </button>
+      </form>
+
+      <!-- Back to Login -->
+
+
+      <!-- Message Alert -->
+      {% block body %}
+        {% include 'msgalert.html' %}
+      {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <p class="text-center text-white/80 mt-8 text-xs">
+      © <span id="year"></span> Near Live. Secure & Powered by RISKLY.
+    </p>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const inputs = document.querySelectorAll('.otp-input');
+      const hiddenInput = document.getElementById('enteredOtp');
+      const form = document.getElementById('otpForm');
+      const resendLink = document.getElementById('resendLink');
+      const countdownEl = document.getElementById('countdown');
+      const otpError = document.getElementById('otpError');
+      let countdown = 60;
+
+      // Auto-focus first input
+      inputs[0].focus();
+
+      // Handle input & auto-move
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', function (e) {
+          this.value = this.value.replace(/[^0-9]/g, '');
+          if (this.value && index < 5) {
+            inputs[index + 1].focus();
+          }
+          updateHiddenInput();
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Backspace' && !this.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+
+        input.addEventListener('paste', function (e) {
+          e.preventDefault();
+          const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+          paste.split('').forEach((char, i) => {
+            if (inputs[i]) inputs[i].value = char;
+          });
+          updateHiddenInput();
+          inputs[Math.min(paste.length, 5)].focus();
+        });
+      });
+
+      function updateHiddenInput() {
+        const otp = Array.from(inputs).map(i => i.value).join('');
+        hiddenInput.value = otp;
+        otpError.classList.toggle('hidden', otp.length === 6);
+      }
+
+      // Countdown Timer
+      const timer = setInterval(() => {
+        countdown--;
+        countdownEl.textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          resendLink.classList.remove('hidden');
+          countdownEl.parentElement.classList.add('hidden');
+        }
+      }, 1000);
+
+      // Resend OTP
+      resendLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Trigger resend logic in Django view
+        window.location.href = `/forgotPassword_otp/?email={{ email }}`;
+      });
+
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

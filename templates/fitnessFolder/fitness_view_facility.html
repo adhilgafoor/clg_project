@@ -1,0 +1,114 @@
+{##}
+{#{% extends 'fitnessFolder/main_home_page.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Services</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Name</th>#}
+{#                <th>Photo</th>#}
+{#                <th>Details</th>#}
+{#                <th>Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.facilityName }}</td>#}
+{#                <td>#}
+{#                    <img src="{{  i.Photo.url }}" height="100" width="100">#}
+{#                    {{ i.Photo }}</td>#}
+{#                <td>{{ i.Details }}</td>#}
+{#                <td>#}
+{#                <a href="/fitness_edit_facility/{{ i.id }}#ab">Edit</a><br><br>#}
+{#                <a href="/fitness_delete_facility/{{ i.id }}#ab">Delete </a><br><br>#}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{##}
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 0; margin: 0;">
+    <div style="max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 30px;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 20px; text-align: center; font-weight: 600;">Services</h1>
+        <div style="margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="Search by Name" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; width: 100%; max-width: 300px;">
+        </div>
+<form method="post">
+    <table border="1" style="width: 100%; border-collapse: collapse; font-size: 14px; color: #374151;">
+        <thead>
+            <tr style="background-color: #f1f5f9; text-align: left;">
+                <th style="padding: 12px; border: 1px solid #e5e7eb;">Slno</th>
+                <th style="padding: 12px; border: 1px solid #e5e7eb;">Name</th>
+                <th style="padding: 12px; border: 1px solid #e5e7eb;">Photo</th>
+                <th style="padding: 12px; border: 1px solid #e5e7eb;">Details</th>
+                <th style="padding: 12px; border: 1px solid #e5e7eb;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="facilitiesTable">
+            {% for i in data %}
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ forloop.counter }}</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.facilityName }}</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">
+                    <img src="{{  i.Photo.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb;">
+                    {{ i.Photo }}</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.Details }}</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">
+                <a href="/fitness_edit_facility/{{ i.id }}#ab" style="color: #4f46e5; text-decoration: none; margin-bottom: 8px; display: inline-block;">Edit</a><br><br>
+                <a href="/fitness_delete_facility/{{ i.id }}#ab" style="color: #dc2626; text-decoration: none; display: inline-block;">Delete </a><br><br>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+    </div>
+
+    <style>
+        input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        a:hover {
+            opacity: 0.9;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        @media (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 8px;
+            }
+            img {
+                height: 80px;
+                width: 80px;
+            }
+        }
+    </style>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#facilitiesTable tr');
+            rows.forEach(row => {
+                const facilityName = row.cells[1].textContent.toLowerCase();
+                row.style.display = facilityName.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,373 @@
+{##}
+{#{% extends 'fitnessFolder/main_home_page.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Services</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>ServiceName</th>#}
+{#                <th>Amount</th>#}
+{#                <th>Photo</th>#}
+{#                <th>Details</th>#}
+{#                <th>CategoryName</th>#}
+{#                <th>Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ i.Servicename }}</td>#}
+{#                <td>{{ i.Amount }}</td>#}
+{#                <td>#}
+{#                    <img src="{{  i.Photo.url }}" height="100" width="100">#}
+{#                    {{ i.Photo }}</td>#}
+{#                <td>{{ i.Details }}</td>#}
+{#                <td>{{ i.CATEGORY.Categoryname }}</td>#}
+{#                <td>#}
+{#                <a href="/fitness_edit_services/{{ i.id }}#ab">Edit Services</a><br><br>#}
+{#                <a href="/fitness_delete_services/{{ i.id }}#ab">Delete Services</a><br><br>#}
+{#                <a href="/fitness_view_review/{{ i.id }}#ab">View Services Review</a>#}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body>
+    <div class="container-fluid mt-5 px-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4 text-primary mb-3">
+                    <i class="bi bi-grid-3x3-gap-fill"></i> Service Management
+                </h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text"
+                           id="searchInput"
+                           class="form-control"
+                           placeholder="Search by service name, category, amount, details...">
+                </div>
+            </div>
+            <div class="col-md-6 text-end">
+                <button class="btn btn-outline-secondary" onclick="clearSearch()">
+                    <i class="bi bi-x-circle"></i> Clear Search
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="dataTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">
+                                            <i class="bi bi-tag-fill"></i> Service Name
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-currency-rupee"></i> Amount
+                                        </th>
+                                        <th scope="col" class="text-center">
+                                            <i class="bi bi-image"></i> Photo
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-card-text"></i> Details
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-folder"></i> Category
+                                        </th>
+                                        <th scope="col" class="text-center">
+                                            <i class="bi bi-gear"></i> Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in data %}
+                                    <tr>
+                                        <td class="fw-bold text-primary">{{ i.Servicename }}</td>
+                                        <td class="text-success fw-bold fs-5">₹{{ i.Amount }}</td>
+                                        <td class="text-center">
+                                            <div class="service-image-container">
+                                                <img src="{{ i.Photo.url }}"
+                                                     alt="{{ i.Servicename }}"
+                                                     class="service-image img-thumbnail"
+                                                     data-bs-toggle="modal"
+                                                     data-bs-target="#imageModal{{ forloop.counter }}"
+                                                     style="cursor: pointer;">
+                                            </div>
+
+                                            <!-- Image Modal -->
+                                            <div class="modal fade" id="imageModal{{ forloop.counter }}" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ i.Servicename }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <img src="{{ i.Photo.url }}"
+                                                                 alt="{{ i.Servicename }}"
+                                                                 class="img-fluid">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="details-text">
+                                                {{ i.Details }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info text-dark fs-6">
+                                                <i class="bi bi-tag"></i> {{ i.CATEGORY.Categoryname }}
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group-vertical btn-group-sm" role="group">
+                                                <a href="/fitness_edit_services/{{ i.id }}#ab"
+                                                   class="btn btn-outline-primary btn-sm mb-1">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                                <a href="/fitness_delete_services/{{ i.id }}#ab"
+                                                   class="btn btn-outline-danger btn-sm mb-1"
+                                                   onclick="return confirm('Are you sure you want to delete this service?');">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </a>
+                                                <a href="/fitness_view_review/{{ i.id }}#ab"
+                                                   class="btn btn-outline-success btn-sm">
+                                                    <i class="bi bi-star-fill"></i> Reviews
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div id="noResults" class="text-center py-5 d-none">
+                            <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-3 mb-1 fs-5">No matching services found</p>
+                            <small class="text-muted">Try adjusting your search terms</small>
+                        </div>
+                    </div>
+
+                    <!-- Total Count Footer -->
+                    <div class="card-footer bg-light">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small class="text-muted">
+                                    <i class="bi bi-list-ul"></i>
+                                    Total Services: <strong id="totalCount">{{ data|length }}</strong>
+                                </small>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <small class="text-muted">
+                                    <i class="bi bi-eye"></i>
+                                    Showing: <strong id="visibleCount">{{ data|length }}</strong>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .table thead th {
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            transform: scale(1.005);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .display-4 {
+            font-weight: 700;
+        }
+
+        .input-group-text {
+            border: none;
+        }
+
+        #searchInput {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        #searchInput:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-color: #86b7fe;
+        }
+
+        .badge {
+            font-size: 0.85rem;
+            padding: 0.5em 0.75em;
+        }
+
+        .card-footer {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .table-responsive {
+            min-height: 300px;
+        }
+
+        .service-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .service-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .service-image-container {
+            display: inline-block;
+        }
+
+        .details-text {
+            max-width: 300px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-height: 1.5;
+        }
+
+        .btn-group-vertical .btn {
+            border-radius: 0.25rem !important;
+        }
+
+        .btn-outline-primary:hover,
+        .btn-outline-danger:hover,
+        .btn-outline-success:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-body img {
+            border-radius: 8px;
+        }
+    </style>
+
+    <!-- Bootstrap Icons CDN (add to main template if not already included) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            let visibleCount = 0;
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                // Search through all cells except photo and actions columns
+                for (let j = 0; j < cells.length; j++) {
+                    if (j !== 2 && j !== 5) { // Skip photo and actions columns
+                        const cellText = cells[j].textContent.toLowerCase();
+                        if (cellText.includes(searchValue)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (found) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+
+            // Update visible count
+            document.getElementById('visibleCount').textContent = visibleCount;
+
+            // Show/hide "no results" message
+            const noResults = document.getElementById('noResults');
+            const tableBody = table.getElementsByTagName('tbody')[0];
+
+            if (visibleCount === 0 && searchValue !== '') {
+                tableBody.style.display = 'none';
+                noResults.classList.remove('d-none');
+            } else {
+                tableBody.style.display = '';
+                noResults.classList.add('d-none');
+            }
+        });
+
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            const totalCount = rows.length;
+
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].style.display = '';
+            }
+
+            document.getElementById('noResults').classList.add('d-none');
+            table.getElementsByTagName('tbody')[0].style.display = '';
+            document.getElementById('visibleCount').textContent = totalCount;
+        }
+    </script>
+</body>
+{% endblock %}

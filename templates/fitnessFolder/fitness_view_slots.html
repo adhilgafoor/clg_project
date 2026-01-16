@@ -1,0 +1,277 @@
+{##}
+{#{% extends 'fitnessFolder/main_home_page.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Services</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Date</th>#}
+{#                <th>Status</th>#}
+{#                <th>Amount</th>#}
+{#                <th>SlotNumber</th>#}
+{#                <th>Service</th>#}
+{#                <th>AvailbiityStatus</th>#}
+{#                <th>Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Date }}</td>#}
+{#                <td>{{ i.Status }}</td>#}
+{#                <td>{{ i.Amount }}</td>#}
+{#                <td>{{ i.SlotNumber }}</td>#}
+{#                <td>{{ i.AVILABLE.SERVICE.Servicename }}</td>#}
+{#                <td>{{ i.AVILABLE.Status }}</td>#}
+{#                <td>#}
+{#                <a href="/fitness_edit_Slots/{{ i.id }}#ab">Edit</a><br><br>#}
+{#                <a href="/fintness_delete_slot/{{ i.id }}#ab">Delete </a><br><br>#}
+{#                <a href="/fitness_view_appointments/{{ i.id }}#ab">Appoinment</a><br><br>#}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body>
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4 text-primary mb-3">
+                    <i class="bi bi-grid-3x3-gap"></i> Slot Management
+                </h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text"
+                           id="searchInput"
+                           class="form-control"
+                           placeholder="Search by service, date, status, slot number...">
+                </div>
+            </div>
+            <div class="col-md-6 text-end">
+                <button class="btn btn-outline-secondary" onclick="clearSearch()">
+                    <i class="bi bi-x-circle"></i> Clear Search
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped mb-0" id="dataTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">
+                                            <i class="bi bi-hash"></i> Sl No
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-calendar-date"></i> Date
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-info-circle"></i> Status
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-currency-rupee"></i> Amount
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-123"></i> Slot Number
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-tag"></i> Service
+                                        </th>
+                                        <th scope="col">
+                                            <i class="bi bi-check-circle"></i> Availability Status
+                                        </th>
+                                        <th scope="col" class="text-center">
+                                            <i class="bi bi-gear"></i> Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in data %}
+                                    <tr>
+                                        <td class="fw-semibold">{{ forloop.counter }}</td>
+                                        <td>{{ i.Date }}</td>
+                                        <td>
+                                            <span class="badge bg-primary">{{ i.Status }}</span>
+                                        </td>
+                                        <td class="text-success fw-bold">₹{{ i.Amount }}</td>
+                                        <td>
+                                            <span class="badge bg-secondary rounded-pill">{{ i.SlotNumber }}</span>
+                                        </td>
+                                        <td class="fw-semibold text-dark">{{ i.AVILABLE.SERVICE.Servicename }}</td>
+                                        <td>
+                                            <span class="badge bg-info text-dark">{{ i.AVILABLE.Status }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group-vertical btn-group-sm" role="group">
+                                                <a href="/fitness_edit_Slots/{{ i.id }}#ab"
+                                                   class="btn btn-outline-primary btn-sm mb-1">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                                <a href="/fintness_delete_slot/{{ i.id }}#ab"
+                                                   class="btn btn-outline-danger btn-sm mb-1">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </a>
+{#                                                <a href="/fitness_view_appointments/{{ i.id }}#ab"#}
+{#                                                   class="btn btn-outline-success btn-sm">#}
+{#                                                    <i class="bi bi-calendar-check"></i> Appointment#}
+{#                                                </a>#}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div id="noResults" class="text-center py-5 d-none">
+                            <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-3">No matching results found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .table thead th {
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-group-vertical .btn {
+            border-radius: 0.25rem !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .display-4 {
+            font-weight: 700;
+        }
+
+        .input-group-text {
+            border: none;
+        }
+
+        #searchInput {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        #searchInput:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-color: #86b7fe;
+        }
+
+        .badge {
+            font-size: 0.85rem;
+            padding: 0.4em 0.65em;
+        }
+    </style>
+
+    <!-- Bootstrap Icons CDN (add to main template if not already included) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            let visibleCount = 0;
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                // Search through all cells except the actions column
+                for (let j = 0; j < cells.length - 1; j++) {
+                    const cellText = cells[j].textContent.toLowerCase();
+                    if (cellText.includes(searchValue)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+
+            // Show/hide "no results" message
+            const noResults = document.getElementById('noResults');
+            const tableBody = table.getElementsByTagName('tbody')[0];
+
+            if (visibleCount === 0 && searchValue !== '') {
+                tableBody.style.display = 'none';
+                noResults.classList.remove('d-none');
+            } else {
+                tableBody.style.display = '';
+                noResults.classList.add('d-none');
+            }
+        });
+
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].style.display = '';
+            }
+
+            document.getElementById('noResults').classList.add('d-none');
+            table.getElementsByTagName('tbody')[0].style.display = '';
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'shopFolder/shop_home.html' %}
+{% block body %}
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Business Account Profile</h1>
+
+        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Basic Information</h2>
+            <p style="color: #374151; margin: 10px 0;"><strong>Name:</strong> {{ data.Name }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Email:</strong> {{ data.Email }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Phone:</strong> {{ data.Phone }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Type:</strong> {{ data.Type }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Status:</strong> {{ data.status }}</p>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Location Details</h2>
+            <p style="color: #374151; margin: 10px 0;"><strong>Place:</strong> {{ data.Place }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>District:</strong> {{ data.District }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Pin Code:</strong> {{ data.Pin }}</p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Location:</strong>
+                <a href="https://www.google.com/maps?q={{ data.latitude }},{{ data.longitude }}" target="_blank" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View on Map</a>
+            </p>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Documents</h2>
+            <p style="color: #374151; margin: 10px 0;"><strong>Photo:</strong><br>
+                <img src="{{ data.Photo.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb; margin: 10px 0;">
+                <a href="{{ data.Photo.url }}" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View Photo</a>
+            </p>
+            <p style="color: #374151; margin: 10px 0;"><strong>Proof:</strong><br>
+                <img src="{{ data.Proof.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb; margin: 10px 0;">
+                <a href="{{ data.Proof.url }}" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View Proof Document</a>
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="/shop_Edit_profile#ab" style="display: inline-block; padding: 10px 20px; background-color: #4f46e5; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 500;">Edit Profile</a>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+{#{% extends 'shopFolder/shop_home.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Business Account Profile</h1>#}
+{##}
+{#    <div>#}
+{#        <h2>Basic Information</h2>#}
+{#        <p><strong>Name:</strong> {{ data.Name }}</p>#}
+{#        <p><strong>Email:</strong> {{ data.Email }}</p>#}
+{#        <p><strong>Phone:</strong> {{ data.Phone }}</p>#}
+{#        <p><strong>Type:</strong> {{ data.Type }}</p>#}
+{#        <p><strong>Status:</strong> {{ data.status }}</p>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{#        <h2>Location Details</h2>#}
+{#        <p><strong>Place:</strong> {{ data.Place }}</p>#}
+{#        <p><strong>District:</strong> {{ data.District }}</p>#}
+{#        <p><strong>Pin Code:</strong> {{ data.Pin }}</p>#}
+{#        <p><strong>Location:</strong> <a href="https://www.google.com/maps?q={{ data.latitude }},{{ data.longitude }}" target="_blank">Map</a> </p>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{#        <h2>Documents</h2>#}
+{#        <p><strong>Photo:</strong>#}
+{#            <img src="{{ data.Photo.url }}" height="100" width="100">#}
+{#            <a href="{{ data.Photo.url }}">View Photo</a></p>#}
+{#        <p><strong>Proof:</strong>#}
+{#          <img src="{{ data.Proof.url }}" height="100" width="100">#}
+{#            <a href="{{ data.Proof.url }}">View Proof Document</a></p>#}
+{#    </div>#}
+{#<div>#}
+{#    <a href="/shop_Edit_profile">Edit</a>#}
+{#</div>#}
+{##}
+{##}
+{#</body>#}
+{#{% endblock %}#}

@@ -1,0 +1,125 @@
+{##}
+{#{% extends 'fitnessFolder/main_home_page.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Services</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Start Date</th>#}
+{#                <th>End Date</th>#}
+{#                <th>OfferName</th>#}
+{#                <th>Amount</th>#}
+{#                <th>Package</th>#}
+{#                <th>Details</th>#}
+{#                <th>ServiceName</th>#}
+{#                <th>Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Startdate }}</td>#}
+{#                <td>{{ i.EndDate }}</td>#}
+{#                <td>{{ i.OfferName }}</td>#}
+{#                <td>{{ i.Amount }}</td>#}
+{#                <td>{{ i.Package }}</td>#}
+{#                <td>{{ i.Details }}</td>#}
+{#                <td>{{ i.SERVICE.Servicename }}</td>#}
+{#                <td>#}
+{#                <a href="/fitness_edit_offers/{{ i.id }}#ab">Edit</a><br><br>#}
+{#                <a href="/fitness_delete_offers/{{ i.id }}#ab">Delete </a><br><br>#}
+{#                <a href="/fitness_delete_offers/{{ i.id }}#ab">Slot</a><br><br>#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 0; margin: 0;">
+    <div style="max-width: 1000px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 30px;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 20px; text-align: center; font-weight: 600;">Services</h1>
+        <div style="margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="Search by Offer Name" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; width: 100%; max-width: 300px;">
+        </div>
+
+        <div style="overflow-x: auto;">
+            <form method="post">
+                <table border="1" style="width: 100%; border-collapse: collapse; font-size: 14px; color: #374151;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; text-align: left;">
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Slno</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Start Date</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">End Date</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">OfferName</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Amount</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Package</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Details</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">ServiceName</th>
+                            <th style="padding: 12px; border: 1px solid #e5e7eb;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="offersTable">
+                        {% for i in data %}
+                        <tr style="border-bottom: 1px solid #e5e7eb;">
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ forloop.counter }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.Startdate }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.EndDate }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.OfferName }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.Amount }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.Package }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.Details }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">{{ i.SERVICE.Servicename }}</td>
+                            <td style="padding: 12px; border: 1px solid #e5e7eb;">
+                                <a href="/fitness_edit_offers/{{ i.id }}#ab" style="color: #4f46e5; text-decoration: none; margin-bottom: 8px; display: inline-block;">Edit</a><br><br>
+                                <a href="/fitness_delete_offers/{{ i.id }}#ab" style="color: #dc2626; text-decoration: none; margin-bottom: 8px; display: inline-block;">Delete </a><br><br>
+                                <a href="/fitness_delete_offers/{{ i.id }}#ab" style="color: #4f46e5; text-decoration: none; display: inline-block;">Slot</a><br><br>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <style>
+            input:focus {
+                border-color: #4f46e5;
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            }
+            a:hover {
+                opacity: 0.9;
+            }
+            tr:nth-child(even) {
+                background-color: #f9fafb;
+            }
+            @media (max-width: 600px) {
+                table {
+                    font-size: 12px;
+                }
+                th, td {
+                    padding: 8px;
+                }
+            }
+        </style>
+
+        <script>
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const rows = document.querySelectorAll('#offersTable tr');
+                rows.forEach(row => {
+                    const offerName = row.cells[3].textContent.toLowerCase();
+                    row.style.display = offerName.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        </script>
+    </div>
+</body>
+{% endblock %}

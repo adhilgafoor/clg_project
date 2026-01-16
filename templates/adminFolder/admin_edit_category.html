@@ -1,0 +1,161 @@
+{% extends 'adminFolder/adminindex.html' %}
+{% block body %}
+<body style="background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%); min-height: 100vh; padding: 20px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-header py-3 text-white text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <h2 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Category</h2>
+                        <p class="mb-0 mt-2 opacity-75">Update category information</p>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+
+                            <div class="mb-4">
+                                <label for="categoryName" class="form-label fw-semibold">Category Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="fas fa-tag"></i></span>
+                                    <input type="text" class="form-control py-2" id="categoryName"
+                                           name="name" value="{{ data.Categoryname }}"
+                                           placeholder="Enter category name" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid category name.
+                                    </div>
+                                </div>
+                                <div class="form-text mt-1">
+                                    Choose a descriptive name for your category.
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="categoryDetails" class="form-label fw-semibold">Category Details</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light align-items-start pt-2"><i class="fas fa-info-circle"></i></span>
+                                    <textarea class="form-control" id="categoryDetails" name="details"
+                                              rows="4" placeholder="Enter category details" required>{{ data.Details }}</textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide category details.
+                                    </div>
+                                </div>
+                                <div class="form-text mt-1">
+                                    Provide detailed information about this category.
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="#" class="btn btn-outline-secondary py-2 px-4 fw-semibold" onclick="history.back()">
+                                    <i class="fas fa-arrow-left me-2"></i>Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary py-2 px-4 fw-semibold">
+                                    <i class="fas fa-save me-2"></i>Update Category
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Category Preview Card -->
+                <div class="card mt-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="fas fa-eye me-2"></i>Category Preview</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Category Name:</strong></p>
+                                <p id="previewName" class="text-muted">{{ data.Categoryname }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Details:</strong></p>
+                                <p id="previewDetails" class="text-muted">{{ data.Details }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        // Real-time preview update
+        document.getElementById('categoryName').addEventListener('input', function() {
+            document.getElementById('previewName').textContent = this.value || '{{ data.Categoryname }}';
+        });
+
+        document.getElementById('categoryDetails').addEventListener('input', function() {
+            document.getElementById('previewDetails').textContent = this.value || '{{ data.Details }}';
+        });
+
+        // Character counter for details
+        document.getElementById('categoryDetails').addEventListener('input', function() {
+            const charCount = this.value.length;
+            const counter = document.getElementById('charCount') || (function() {
+                const counterElem = document.createElement('div');
+                counterElem.id = 'charCount';
+                counterElem.className = 'form-text text-end mt-1';
+                this.parentNode.parentNode.appendChild(counterElem);
+                return counterElem;
+            })();
+
+            counter.textContent = `${charCount} characters`;
+
+            if (charCount > 200) {
+                counter.className = 'form-text text-end mt-1 text-success';
+            } else if (charCount > 50) {
+                counter.className = 'form-text text-end mt-1 text-warning';
+            } else {
+                counter.className = 'form-text text-end mt-1 text-danger';
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+
+
+
+
+
+{#{% extends 'adminFolder/adminindex.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Category</h1>#}
+{##}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        <div>#}
+{#            <label for="category">Category Name:</label>#}
+{#            <input type="category" id="categorys" value="{{ data.Categoryname }}" name="name" required>#}
+{#        </div>#}
+{##}
+{#        <div>#}
+{#            <label for="categorydetails">Category Details:</label>#}
+{#            <input type="categoryDetails" value="{{ data.Details }}" id="categorysDetails" name="details" required>#}
+{#        </div>#}
+{##}
+{#        <div>#}
+{#            <button type="submit">Submit</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</body>#}
+{#{% endblock %}#}

@@ -1,0 +1,49 @@
+
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body>
+    <h1>Services</h1>
+<form method="post">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Slno</th>
+                <th>Date</th>
+                <th>Service</th>
+                <th>FromTime</th>
+                <th>ToTime</th>
+                <th>UserDetails</th>
+                <th>Slot</th>
+                <th>SlotDate</th>
+                <th>SlotStatus</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.SLOT.Date }}</td>
+                <td>{{ i.SLOT.AVILABLE.SERVICE.Servicename }}</td>
+                <td>{{ i.SLOT.AVILABLE.Fromtime }}</td>
+                <td>{{ i.SLOT.AVILABLE.Totime }}</td>
+                <td>
+                    {{ i.USER.Name }}<br><br>
+                    {{ i.USER.Email }}<br><br>
+                    {{ i.USER.Phone }}<br><br>
+
+                </td>
+                <td>{{ i.SLOT.SlotNumber }}</td>
+                <td>{{ i.Date }}</td>
+                <td>{{ i.Status }}</td>
+                <td>
+                <a href="/fintness_approve_appointments/{{ i.id }}#ab">Payments </a><br><br>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+</body>
+{% endblock %}

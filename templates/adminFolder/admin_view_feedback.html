@@ -1,0 +1,437 @@
+{% extends 'adminFolder/adminindex.html' %}
+{% block body %}
+<body style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh;">
+    <div class="container-fluid py-4">
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1 class="h3 mb-1 text-primary"><i class="fas fa-comments me-2"></i>User Feedback</h1>
+                                <p class="text-muted mb-0">Review and analyze user feedback</p>
+                            </div>
+                            <div class="badge bg-primary p-2">
+                                <i class="fas fa-comment-dots me-1"></i>
+                                <span id="feedbackCount">{{ data|length }}</span> Feedbacks
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Search and Filter Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Search Feedback</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="fas fa-search"></i></span>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by user name, email, or feedback...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Date Range</label>
+                                <select class="form-select" id="dateFilter">
+                                    <option value="all">All Time</option>
+                                    <option value="today">Today</option>
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Sort By</label>
+                                <select class="form-select" id="sortFilter">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                    <i class="fas fa-refresh me-1"></i>Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Cards Grid -->
+        <div class="row" id="feedbackGrid">
+            {% for i in data %}
+            <div class="col-xl-6 col-lg-6 mb-4 feedback-card"
+                 data-date="{{ i.Date|date:'Y-m-d' }}"
+                 data-user="{{ i.USER.Name|lower }}"
+                 data-email="{{ i.USER.Email|lower }}"
+                 data-feedback="{{ i.Feedback|lower }}">
+                <div class="card h-100 shadow-sm border-0 feedback-item">
+                    <div class="card-header bg-white border-0 pb-0">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <h6 class="card-title mb-1 text-primary">{{ i.USER.Name }}</h6>
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-envelope me-1"></i>{{ i.USER.Email }}
+                                </p>
+                            </div>
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-calendar me-1"></i>{{ i.Date }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Feedback Content -->
+                        <div class="feedback-content mb-3">
+                            <p class="mb-0 text-dark feedback-text" style="line-height: 1.6;">
+                                "{{ i.Feedback }}"
+                            </p>
+                        </div>
+
+                        <!-- Feedback Metadata -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted small">
+                                <i class="fas fa-hashtag me-1"></i>#{{ forloop.counter }}
+                            </div>
+                            <div class="feedback-actions">
+                                <button class="btn btn-sm btn-outline-primary" onclick="analyzeSentiment(this)">
+                                    <i class="fas fa-chart-line me-1"></i>Analyze
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center py-5">
+                        <div class="text-muted">
+                            <i class="fas fa-comments fa-3x mb-3"></i>
+                            <h4>No Feedback Found</h4>
+                            <p class="mb-0">There is no user feedback available at the moment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Feedback Summary -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0 text-primary"><i class="fas fa-chart-bar me-2"></i>Feedback Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-primary mb-1" id="charCountAvg">0</h4>
+                                    <small class="text-muted">Avg. Length</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-success mb-1" id="positiveCount">0</h4>
+                                    <small class="text-muted">Positive</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-warning mb-1" id="neutralCount">0</h4>
+                                    <small class="text-muted">Neutral</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-danger mb-1" id="negativeCount">0</h4>
+                                    <small class="text-muted">Negative</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-info mb-1" id="suggestionCount">0</h4>
+                                    <small class="text-muted">Suggestions</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="border rounded p-3">
+                                    <h4 class="text-purple mb-1">{{ data|length }}</h4>
+                                    <small class="text-muted">Total</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        .feedback-item {
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .feedback-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            border-color: #0d6efd;
+        }
+
+        .feedback-text {
+            font-style: italic;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .feedback-text::before {
+            content: '"';
+            font-size: 2rem;
+            color: #0d6efd;
+            position: absolute;
+            left: -0.5rem;
+            top: -0.5rem;
+            opacity: 0.3;
+        }
+
+        .card-header {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .badge {
+            font-weight: 500;
+        }
+
+        .feedback-card {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .border.rounded {
+            border-color: #e9ecef !important;
+        }
+    </style>
+
+    <script>
+        // Initialize statistics and filters
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatistics();
+            initializeFilters();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterFeedback();
+        });
+
+        // Filter functionality
+        document.getElementById('dateFilter').addEventListener('change', filterFeedback);
+        document.getElementById('sortFilter').addEventListener('change', sortFeedback);
+
+        function filterFeedback() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value;
+
+            const cards = document.querySelectorAll('.feedback-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const user = card.getAttribute('data-user');
+                const email = card.getAttribute('data-email');
+                const feedback = card.getAttribute('data-feedback');
+                const date = card.getAttribute('data-date');
+
+                const matchesSearch = user.includes(searchTerm) || email.includes(searchTerm) || feedback.includes(searchTerm);
+                const matchesDate = matchesDateFilter(date, dateFilter);
+
+                if (matchesSearch && matchesDate) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('feedbackCount').textContent = visibleCount;
+            updateStatistics();
+        }
+
+        function matchesDateFilter(date, filterType) {
+            if (filterType === 'all') return true;
+
+            const feedbackDate = new Date(date);
+            const today = new Date();
+
+            switch(filterType) {
+                case 'today':
+                    return date === today.toISOString().split('T')[0];
+                case 'week':
+                    const oneWeekAgo = new Date(today);
+                    oneWeekAgo.setDate(today.getDate() - 7);
+                    return feedbackDate >= oneWeekAgo;
+                case 'month':
+                    const oneMonthAgo = new Date(today);
+                    oneMonthAgo.setMonth(today.getMonth() - 1);
+                    return feedbackDate >= oneMonthAgo;
+                default:
+                    return true;
+            }
+        }
+
+        function sortFeedback() {
+            const sortType = document.getElementById('sortFilter').value;
+            const container = document.getElementById('feedbackGrid');
+            const cards = Array.from(container.querySelectorAll('.feedback-card'));
+
+            cards.sort((a, b) => {
+                const dateA = new Date(a.getAttribute('data-date'));
+                const dateB = new Date(b.getAttribute('data-date'));
+                return sortType === 'newest' ? dateB - dateA : dateA - dateB;
+            });
+
+            // Re-append cards in sorted order
+            cards.forEach(card => container.appendChild(card));
+        }
+
+        function updateStatistics() {
+            const cards = document.querySelectorAll('.feedback-card:not([style*="display: none"])');
+            const today = new Date().toISOString().split('T')[0];
+
+            let todayCount = 0;
+            let thisWeekCount = 0;
+            let thisMonthCount = 0;
+            let totalChars = 0;
+
+            cards.forEach(card => {
+                const date = card.getAttribute('data-date');
+                const feedbackText = card.querySelector('.feedback-text').textContent;
+                totalChars += feedbackText.length;
+
+                if (date === today) todayCount++;
+
+                const feedbackDate = new Date(date);
+                const now = new Date();
+                const oneWeekAgo = new Date(now);
+                oneWeekAgo.setDate(now.getDate() - 7);
+                const oneMonthAgo = new Date(now);
+                oneMonthAgo.setMonth(now.getMonth() - 1);
+
+                if (feedbackDate >= oneWeekAgo) thisWeekCount++;
+                if (feedbackDate >= oneMonthAgo) thisMonthCount++;
+            });
+
+            document.getElementById('todayCount').textContent = todayCount;
+            document.getElementById('thisWeekCount').textContent = thisWeekCount;
+            document.getElementById('thisMonthCount').textContent = thisMonthCount;
+            document.getElementById('charCountAvg').textContent = cards.length ? Math.round(totalChars / cards.length) : 0;
+        }
+
+        function initializeFilters() {
+            // Set default date filter to show all
+            document.getElementById('dateFilter').value = 'all';
+            document.getElementById('sortFilter').value = 'newest';
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('dateFilter').value = 'all';
+            document.getElementById('sortFilter').value = 'newest';
+            filterFeedback();
+        }
+
+        function analyzeSentiment(button) {
+            const card = button.closest('.feedback-item');
+            const feedbackText = card.querySelector('.feedback-text').textContent;
+
+            // Simple sentiment analysis simulation
+            const positiveWords = ['good', 'great', 'excellent', 'amazing', 'love', 'awesome', 'perfect', 'nice', 'happy'];
+            const negativeWords = ['bad', 'terrible', 'awful', 'hate', 'disappointing', 'poor', 'worst', 'issue', 'problem'];
+
+            let sentiment = 'neutral';
+            let positiveCount = 0;
+            let negativeCount = 0;
+
+            const words = feedbackText.toLowerCase().split(' ');
+            words.forEach(word => {
+                if (positiveWords.includes(word)) positiveCount++;
+                if (negativeWords.includes(word)) negativeCount++;
+            });
+
+            if (positiveCount > negativeCount) sentiment = 'positive';
+            else if (negativeCount > positiveCount) sentiment = 'negative';
+
+            alert(`Sentiment Analysis:\n\nFeedback: "${feedbackText}"\n\nResult: ${sentiment.toUpperCase()}\nPositive words: ${positiveCount}\nNegative words: ${negativeCount}`);
+        }
+
+        // Add hover effects
+        document.querySelectorAll('.feedback-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+{% endblock %}
+
+
+
+
+{#{% extends 'adminFolder/adminindex.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Feed Back</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Date</th>#}
+{#                <th>Feedback</th>#}
+{#                <th>User</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Date }}</td>#}
+{#                <td>{{ i.Feedback }}</td>#}
+{#                <td>#}
+{#                    {{ i.USER.Name }}<br>#}
+{#                    {{ i.USER.Email }}<br>#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}

@@ -1,0 +1,45 @@
+
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% block body %}
+<body>
+    <h1>Avilability Status</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+         <div>
+            <label for="category">Service Name:</label>
+            <select name="service">
+                {% for i in gh %}
+                <option value="{{ i.id }}" {% if i.id == data.SERVICE_id %}selected{% endif %}>{{ i.Servicename }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+         <div>
+            <label for="category">Service Status:</label>
+            <select name="status">
+
+           <option value="Open" {% if data.Status == "Open" %}selected{% endif %}>Open</option>
+            <option value="Closed" {% if data.Status == "Closed" %}selected{% endif %}>Closed</option>
+            <option value="24/7" {% if data.Status == "24/7" %}selected{% endif %}>24/7</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="time">From time:</label>
+            <input type="time" value="{{ data.Fromtime }}" id="name" name="ftime" required>
+        </div>
+     <div>
+            <label for="ttime">To time:</label>
+            <input type="time" value="{{ data.Totime }}" id="name" name="ttime" required>
+        </div>
+
+
+        <div>
+            <button type="submit">Edit Status</button>
+        </div>
+    </form>
+</body>
+{% endblock %}

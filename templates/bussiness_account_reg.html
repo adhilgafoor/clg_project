@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Near Live - Partner Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/glassm-theme.css">
+    <style>
+        .reg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reg-card {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .section-title {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .location-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .location-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .location-btn.primary {
+            background: var(--secondary-color);
+            border: none;
+            margin-top: 10px;
+        }
+
+        .coords-display {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 5px;
+            font-family: monospace;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <div class="reg-container">
+        <div class="glass-card reg-card">
+            <div class="text-center mb-4">
+                <i class="fas fa-handshake fa-3x mb-3 text-gradient"></i>
+                <h1 style="font-size: 2rem; font-weight: 700;">Join as Business Partner</h1>
+                <p style="color: var(--text-muted);">Start growing your business with us today</p>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Personal Info -->
+                <div class="section-title">
+                    <i class="fas fa-user-circle"></i> Personal Information
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" name="name" class="glass-input" required placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label>Email Address <span class="required">*</span></label>
+                        <input type="email" name="email" class="glass-input" required placeholder="john@example.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" name="phone" class="glass-input" required placeholder="+91 9876543210">
+                    </div>
+                    <div>
+                        <label>Username <span class="required">*</span></label>
+                        <input type="text" name="username" class="glass-input" required placeholder="yourusername">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>Password <span class="required">*</span></label>
+                    <input type="password" name="password" class="glass-input" required
+                        placeholder="Create a strong password">
+                </div>
+
+                <!-- Business Details -->
+                <div class="section-title">
+                    <i class="fas fa-briefcase"></i> Business Details
+                </div>
+                <div class="mb-3">
+                    <label>Business Type <span class="required">*</span></label>
+                    <select name="type" class="glass-input" required>
+                        <option value="" style="color: black;">Choose your business type</option>
+                        <option value="service provider" style="color: black;">Service Provider</option>
+                        <option value="shop" style="color: black;">Shop / Retail</option>
+                        <option value="fitness" style="color: black;">Fitness Center</option>
+                    </select>
+                </div>
+
+                <!-- Location Details -->
+                <div class="section-title">
+                    <i class="fas fa-map-marked-alt"></i> Location Details
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Place / Area <span class="required">*</span></label>
+                        <input type="text" id="place" name="place" class="glass-input" required
+                            placeholder="e.g., Kochi">
+                    </div>
+                    <div>
+                        <label>District <span class="required">*</span></label>
+                        <input type="text" id="district" name="dict" class="glass-input" required
+                            placeholder="e.g., Ernakulam">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>PIN Code <span class="required">*</span></label>
+                    <input type="text" name="pin" class="glass-input" required placeholder="682001">
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" class="location-btn" onclick="getLocationFromPlace()">
+                        <i class="fas fa-search-location"></i> Fetch Coordinates from Place
+                    </button>
+                    <button type="button" class="location-btn primary" onclick="getCurrentLocation()">
+                        <i class="fas fa-crosshairs"></i> Use My Current Location
+                    </button>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Latitude</label>
+                        <input type="text" id="lat" name="lat" class="glass-input" required readonly>
+                        <div class="coords-display" id="lat-display">Not fetched yet</div>
+                    </div>
+                    <div>
+                        <label>Longitude</label>
+                        <input type="text" id="long" name="longii" class="glass-input" required readonly>
+                        <div class="coords-display" id="long-display">Not fetched yet</div>
+                    </div>
+                </div>
+
+                <!-- Documents -->
+                <div class="section-title">
+                    <i class="fas fa-file-upload"></i> Documents & Proof
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Proof Document <span class="required">*</span></label>
+                        <input type="file" name="proof" class="glass-input" required accept=".pdf,.jpg,.jpeg,.png">
+                        <small style="color: var(--text-muted);">PDF, JPG, PNG (Max 5MB)</small>
+                    </div>
+                    <div>
+                        <label>Business Photo <span class="required">*</span></label>
+                        <input type="file" name="photo" class="glass-input" required accept=".jpg,.jpeg,.png">
+                        <small style="color: var(--text-muted);">JPG, PNG (Max 5MB)</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="glass-btn w-full mt-4"
+                    style="margin-top: 30px; background: var(--secondary-color);">
+                    Create Business Account
+                </button>
+
+                <div class="text-center mt-3" style="margin-top: 15px; font-size: 0.9rem;">
+                    Already have an account? <a href="/loginindex" class="glass-link">Login Here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function getLocationFromPlace() {
+            const place = document.getElementById('place').value.trim();
+            const district = document.getElementById('district').value.trim();
+
+            if (!place) {
+                alert("Please enter Place/Area first!");
+                return;
+            }
+
+            const query = encodeURIComponent(`${place}, ${district}, Kerala, India`);
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&limit=1`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    const lat = parseFloat(data[0].lat).toFixed(6);
+                    const lon = parseFloat(data[0].lon).toFixed(6);
+
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('long').value = lon;
+                    document.getElementById('lat-display').textContent = lat;
+                    document.getElementById('long-display').textContent = lon;
+
+                    alert("Location found successfully!");
+                } else {
+                    alert("Location not found. Try being more specific.");
+                }
+            } catch (err) {
+                alert("Error fetching location. Check internet connection.");
+            }
+        }
+
+        function getCurrentLocation() {
+            if (!navigator.geolocation) {
+                alert("Geolocation is not supported by your browser");
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude.toFixed(6);
+                    const lon = position.coords.longitude.toFixed(6);
+
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('long').value = lon;
+                    document.getElementById('lat-display').textContent = lat;
+                    document.getElementById('long-display').textContent = lon;
+
+                    alert("Your current location has been set!");
+                },
+                () => {
+                    alert("Unable to retrieve your location. Please allow location access.");
+                }
+            );
+        }
+    </script>
+</body>
+
+</html>

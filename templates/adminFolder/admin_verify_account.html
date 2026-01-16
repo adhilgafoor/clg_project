@@ -1,0 +1,484 @@
+{% extends 'adminFolder/adminindex.html' %}
+{% block body %}
+<body style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh;">
+    <div class="container-fluid py-4">
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1 class="h3 mb-1 text-primary"><i class="fas fa-building me-2"></i>Business Account Requests</h1>
+                                <p class="text-muted mb-0">Manage and review business registration requests</p>
+                            </div>
+                            <div class="badge bg-primary p-2">
+                                <i class="fas fa-users me-1"></i>
+                                <span id="requestCount">{{ data|length }}</span> Requests
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <form method="post" class="row g-3 align-items-end">
+                            {% csrf_token %}
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Search Business</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="fas fa-search"></i></span>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by name, email, or type...">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold">Status</label>
+                                <select class="form-select" id="statusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold">Business Type</label>
+                                <select class="form-select" id="typeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="retail">Retail</option>
+                                    <option value="service">Service</option>
+                                    <option value="manufacturing">Manufacturing</option>
+                                    <option value="restaurant">Restaurant</option>
+                                    <option value="technology">Technology</option>
+                                    <!-- Add more types as needed -->
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold">District</label>
+                                <select class="form-select" id="districtFilter">
+                                    <option value="all">All Districts</option>
+                                    <!-- Districts will be populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                    <i class="fas fa-refresh me-1"></i>Reset Filters
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requests Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="requestsTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">
+                                            <i class="fas fa-user me-1"></i>Business Info
+                                        </th>
+                                        <th>
+                                            <i class="fas fa-map-marker-alt me-1"></i>Location
+                                        </th>
+                                        <th>
+                                            <i class="fas fa-briefcase me-1"></i>Business Type
+                                        </th>
+                                        <th>
+                                            <i class="fas fa-info-circle me-1"></i>Status
+                                        </th>
+                                        <th>
+                                            <i class="fas fa-file-image me-1"></i>Documents
+                                        </th>
+                                        <th class="text-center pe-4">
+                                            <i class="fas fa-cogs me-1"></i>Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for account in data %}
+                                    <tr class="request-row" data-status="{{ account.status|lower }}" data-type="{{ account.Type|lower }}" data-district="{{ account.District|lower }}">
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ account.Photo.url }}" class="rounded-circle me-3" height="50" width="50" alt="Business Photo" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-1 fw-semibold">{{ account.Name }}</h6>
+                                                    <p class="text-muted mb-1 small">
+                                                        <i class="fas fa-envelope me-1"></i>{{ account.Email }}
+                                                    </p>
+                                                    <p class="text-muted mb-0 small">
+                                                        <i class="fas fa-phone me-1"></i>{{ account.Phone }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="small">
+                                                <div class="mb-1">
+                                                    <i class="fas fa-map-pin me-1 text-muted"></i>
+                                                    {{ account.Place }}, {{ account.District }}
+                                                </div>
+                                                <div class="mb-1">
+                                                    <i class="fas fa-hashtag me-1 text-muted"></i>
+                                                    PIN: {{ account.Pin }}
+                                                </div>
+                                                <a href="https://www.google.com/maps?q={{ account.latitude }},{{ account.longitude }}"
+                                                   target="_blank"
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-map-marked-alt me-1"></i>View Map
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {% if account.Type == 'Retail' %}
+                                                <span class="badge bg-purple text-white">
+                                                    <i class="fas fa-shopping-cart me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% elif account.Type == 'Service' %}
+                                                <span class="badge bg-teal text-white">
+                                                    <i class="fas fa-concierge-bell me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% elif account.Type == 'Manufacturing' %}
+                                                <span class="badge bg-orange text-white">
+                                                    <i class="fas fa-industry me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% elif account.Type == 'Restaurant' %}
+                                                <span class="badge bg-red text-white">
+                                                    <i class="fas fa-utensils me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% elif account.Type == 'Technology' %}
+                                                <span class="badge bg-blue text-white">
+                                                    <i class="fas fa-laptop-code me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-secondary text-white">
+                                                    <i class="fas fa-briefcase me-1"></i>{{ account.Type }}
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if account.status == 'pending' %}
+                                                <span class="badge bg-warning text-dark">
+                                                    <i class="fas fa-clock me-1"></i>Pending
+                                                </span>
+                                            {% elif account.status == 'approved' %}
+                                                <span class="badge bg-success text-white">
+                                                    <i class="fas fa-check me-1"></i>Approved
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-danger text-white">
+                                                    <i class="fas fa-times me-1"></i>Rejected
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <a href="{{ account.Photo.url }}"
+                                                   target="_blank"
+                                                   class="btn btn-outline-secondary mb-1">
+                                                    <i class="fas fa-image me-1"></i>Photo
+                                                </a>
+                                                {% if account.Proof %}
+                                                <a href="{{ account.Proof.url }}"
+                                                   target="_blank"
+                                                   class="btn btn-outline-secondary">
+                                                    <i class="fas fa-file-contract me-1"></i>Proof
+                                                </a>
+                                                {% else %}
+                                                <button class="btn btn-outline-secondary" disabled>
+                                                    <i class="fas fa-times me-1"></i>No Proof
+                                                </button>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td class="text-center pe-4">
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                {% if account.status == 'pending' %}
+                                                <a href="/admin_approve_buissness/{{ account.id }}"
+                                                   class="btn btn-success mb-1"
+                                                   onclick="return confirm('Are you sure you want to approve {{ account.Name }}?')">
+                                                    <i class="fas fa-check me-1"></i>Approve
+                                                </a>
+                                                <a href="/admin_reject_buissness/{{ account.id }}"
+                                                   class="btn btn-danger"
+                                                   onclick="return confirm('Are you sure you want to reject {{ account.Name }}?')">
+                                                    <i class="fas fa-times me-1"></i>Reject
+                                                </a>
+                                                {% else %}
+                                                <span class="text-muted small">Action Taken</span>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6" class="text-center py-5">
+                                            <div class="text-muted">
+                                                <i class="fas fa-inbox fa-3x mb-3"></i>
+                                                <h5>No Business Account Requests Found</h5>
+                                                <p class="mb-0">All requests have been processed or no new requests available.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Custom badge colors for better visibility */
+        .bg-purple {
+            background-color: #6f42c1 !important;
+        }
+        .bg-teal {
+            background-color: #20c997 !important;
+        }
+        .bg-orange {
+            background-color: #fd7e14 !important;
+        }
+        .bg-red {
+            background-color: #dc3545 !important;
+        }
+        .bg-blue {
+            background-color: #0d6efd !important;
+        }
+
+        /* Status badge improvements */
+        .bg-warning {
+            background-color: #ffc107 !important;
+        }
+        .bg-success {
+            background-color: #198754 !important;
+        }
+        .bg-danger {
+            background-color: #dc3545 !important;
+        }
+
+        /* Ensure text is readable */
+        .badge {
+            font-weight: 500;
+            padding: 0.5em 0.75em;
+            font-size: 0.75em;
+        }
+
+        /* Hover effects for table rows */
+        .request-row:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+
+    <script>
+        // Initialize counts and filters
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatistics();
+            populateDistrictFilter();
+            populateTypeFilter();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterRequests();
+        });
+
+        // Filter functionality
+        document.getElementById('statusFilter').addEventListener('change', filterRequests);
+        document.getElementById('typeFilter').addEventListener('change', filterRequests);
+        document.getElementById('districtFilter').addEventListener('change', filterRequests);
+
+        function filterRequests() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const districtFilter = document.getElementById('districtFilter').value;
+
+            const rows = document.querySelectorAll('.request-row');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const name = row.querySelector('h6').textContent.toLowerCase();
+                const email = row.querySelector('.text-muted small:nth-child(2)').textContent.toLowerCase();
+                const type = row.getAttribute('data-type');
+                const status = row.getAttribute('data-status');
+                const district = row.getAttribute('data-district');
+
+                const matchesSearch = name.includes(searchTerm) || email.includes(searchTerm) || type.includes(searchTerm);
+                const matchesStatus = statusFilter === 'all' || status === statusFilter;
+                const matchesType = typeFilter === 'all' || type === typeFilter;
+                const matchesDistrict = districtFilter === 'all' || district === districtFilter;
+
+                if (matchesSearch && matchesStatus && matchesType && matchesDistrict) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('requestCount').textContent = visibleCount;
+            updateStatistics();
+        }
+
+        function updateStatistics() {
+            const rows = document.querySelectorAll('.request-row:not([style*="display: none"])');
+            let pending = 0, approved = 0, rejected = 0;
+
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                if (status === 'pending') pending++;
+                else if (status === 'approved') approved++;
+                else if (status === 'rejected') rejected++;
+            });
+
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('approvedCount').textContent = approved;
+            document.getElementById('rejectedCount').textContent = rejected;
+        }
+
+        function populateDistrictFilter() {
+            const districts = new Set();
+            document.querySelectorAll('.request-row').forEach(row => {
+                const district = row.getAttribute('data-district');
+                if (district && district !== 'null') {
+                    districts.add(district);
+                }
+            });
+
+            const districtFilter = document.getElementById('districtFilter');
+            // Clear existing options except "All Districts"
+            while (districtFilter.children.length > 1) {
+                districtFilter.removeChild(districtFilter.lastChild);
+            }
+
+            districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.textContent = district.charAt(0).toUpperCase() + district.slice(1);
+                districtFilter.appendChild(option);
+            });
+        }
+
+        function populateTypeFilter() {
+            const types = new Set();
+            document.querySelectorAll('.request-row').forEach(row => {
+                const type = row.getAttribute('data-type');
+                if (type && type !== 'null') {
+                    types.add(type);
+                }
+            });
+
+            const typeFilter = document.getElementById('typeFilter');
+            types.forEach(type => {
+                // Check if option already exists
+                const existingOptions = Array.from(typeFilter.options).map(opt => opt.value);
+                if (!existingOptions.includes(type)) {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                    typeFilter.appendChild(option);
+                }
+            });
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('typeFilter').value = 'all';
+            document.getElementById('districtFilter').value = 'all';
+            filterRequests();
+        }
+    </script>
+</body>
+{% endblock %}
+
+{#{% extends 'adminFolder/adminindex.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Business Account Requests</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Email</th>#}
+{#                <th>Phone</th>#}
+{#                <th>Place</th>#}
+{#                <th>District</th>#}
+{#                <th>PIN</th>#}
+{#                <th>Business Type</th>#}
+{#                <th>Status</th>#}
+{#                <th>Location</th>#}
+{#                <th>Photo</th>#}
+{#                <th>Proof</th>#}
+{#                <th>Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for account in data %}#}
+{#            <tr>#}
+{#                <td>{{ account.Name }}</td>#}
+{#                <td>{{ account.Email }}</td>#}
+{#                <td>{{ account.Phone }}</td>#}
+{#                <td>{{ account.Place }}</td>#}
+{#                <td>{{ account.District }}</td>#}
+{#                <td>{{ account.Pin }}</td>#}
+{#                <td>{{ account.Type }}</td>#}
+{#                <td>{{ account.status }}</td>#}
+{#                <td>#}
+{#                 <a href="https://www.google.com/maps?q={{ account.latitude }}, {{ account.longitude }}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 5px 10px; background-color: #465fff; color: white; text-decoration: none; border-radius: 3px; font-size: 12px;">#}
+{#                                    View on Map#}
+{#                                </a>#}
+{##}
+{#                </td>#}
+{##}
+{#                <td>#}
+{#                    <img src="{{ account.Photo.url }}" height="100" width="100">#}
+{#                        <a href="{{ account.Photo.url }}" target="_blank">View Photo</a>#}
+{#                   #}
+{#                </td>#}
+{#                <td>#}
+{#                    {% if account.Proof %}#}
+{#                        <a href="{{ account.Proof.url }}" target="_blank">View Proof</a>#}
+{#                    {% else %}#}
+{#                        No Proof#}
+{#                    {% endif %}#}
+{#                </td>#}
+{#                <td>#}
+{#                        <a href="/admin_approve_buissness/{{ account.id }}">Approve</a><br><br>#}
+{#                        <a href="/admin_reject_buissness/{{ account.id }}">Reject</a>#}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td colspan="11">No business account requests found.</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}

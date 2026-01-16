@@ -1,0 +1,242 @@
+{% extends 'adminFolder/adminindex.html' %}
+{% block body %}
+<body style="background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 600;">
+                <i class="fas fa-users" style="margin-right: 10px;"></i>Users Management
+            </h1>
+            <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0; font-size: 14px;">
+                View and manage all registered users
+            </p>
+        </div>
+
+        <!-- Statistics Cards -->
+
+        <!-- Search and Actions -->
+        <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="searchInput" placeholder="Search users by name, email, or phone..." style="flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.3s ease;" onkeyup="searchUsers()">
+                        <button style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
+                            <i class="fas fa-search" style="margin-right: 5px;"></i>Search
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#218838'" onmouseout="this.style.backgroundColor='#28a745'">
+                        <i class="fas fa-download" style="margin-right: 5px;"></i>Export
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <!-- Table -->
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-hashtag" style="margin-right: 6px;"></i>#
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-user" style="margin-right: 6px;"></i>User Info
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-phone" style="margin-right: 6px;"></i>Contact
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-image" style="margin-right: 6px;"></i>Photo
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>Address
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid #e9ecef; transition: background-color 0.2s ease;" class="user-row">
+                        <td style="padding: 16px 12px; color: #6c757d; font-weight: 500; font-size: 14px; text-align: center;">
+                            {{ forloop.counter }}
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                                    {{ i.Name|first|upper }}
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; color: #495057; font-size: 15px; margin-bottom: 2px;">{{ i.Name }}</div>
+                                    <div style="color: #6c757d; font-size: 13px;">
+                                        <i class="fas fa-envelope" style="margin-right: 4px;"></i>{{ i.Email }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="color: #495057; font-size: 14px; font-weight: 500;">
+                                {{ i.Phone }}
+                            </div>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            {% if i.Photo %}
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="{{ i.Photo }}" alt="User Photo" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 2px solid #e9ecef;">
+                                <a href="{{ i.Photo }}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 13px; padding: 6px 12px; border: 1px solid #007bff; border-radius: 6px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#007bff'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#007bff'">
+                                    <i class="fas fa-external-link-alt" style="margin-right: 4px;"></i>View
+                                </a>
+                            </div>
+                            {% else %}
+                            <span style="color: #6c757d; font-size: 13px; background: #f8f9fa; padding: 6px 12px; border-radius: 6px;">
+                                <i class="fas fa-times" style="margin-right: 4px;"></i>No Photo
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #28a745;">
+                                <div style="display: grid; gap: 4px;">
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-map-pin" style="color: #6c757d; font-size: 12px;"></i>
+                                        <span style="color: #495057; font-size: 14px; font-weight: 500;">{{ i.Place }}</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-city" style="color: #6c757d; font-size: 12px;"></i>
+                                        <span style="color: #495057; font-size: 13px;">{{ i.District }}</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-hashtag" style="color: #6c757d; font-size: 12px;"></i>
+                                        <span style="color: #495057; font-size: 13px;">PIN: {{ i.Pin }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="padding: 60px 20px; text-align: center;">
+                            <div style="color: #6c757d;">
+                                <i class="fas fa-users" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                <h3 style="margin: 0 0 8px 0; color: #495057;">No Users Found</h3>
+                                <p style="margin: 0;">There are no registered users in the system.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- User Summary -->
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Calculate user statistics
+        document.addEventListener('DOMContentLoaded', function() {
+            let withPhotoCount = 0;
+            let completeProfileCount = 0;
+            const cities = new Set();
+
+            // Count users with photos and complete profiles
+            {% for i in data %}
+                {% if i.Photo %}
+                    withPhotoCount++;
+                {% endif %}
+
+                // Check if profile is complete (has name, email, phone, and address)
+                {% if i.Name and i.Email and i.Phone and i.Place and i.District and i.Pin %}
+                    completeProfileCount++;
+                {% endif %}
+
+                // Add city to set for counting unique cities
+                cities.add("{{ i.District }}");
+            {% endfor %}
+
+            // Update statistics
+            document.getElementById('withPhotoCount').textContent = withPhotoCount;
+            document.getElementById('completeProfileCount').textContent = completeProfileCount;
+            document.getElementById('differentCitiesCount').textContent = cities.size;
+
+            // Add hover effects to table rows
+            const tableRows = document.querySelectorAll('.user-row');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.transform = 'translateY(-1px)';
+                    this.style.transition = 'all 0.2s ease';
+                });
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Search functionality
+        function searchUsers() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const rows = document.querySelectorAll('.user-row');
+
+            rows.forEach(row => {
+                const name = row.querySelector('td:nth-child(2) div:nth-child(2) div:first-child').textContent.toLowerCase();
+                const email = row.querySelector('td:nth-child(2) div:nth-child(2) div:nth-child(2)').textContent.toLowerCase();
+                const phone = row.querySelector('td:nth-child(3) div').textContent.toLowerCase();
+
+                if (name.includes(filter) || email.includes(filter) || phone.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+{% endblock %}
+
+
+
+
+
+
+
+{#{% extends 'adminFolder/adminindex.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Users List</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Name</th>#}
+{#                <th>Email</th>#}
+{#                <th>Phone</th>#}
+{#                <th>Photo</th>#}
+{#                <th>Address</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Name }}</td>#}
+{#                <td>{{ i.Email }}</td>#}
+{#                <td>{{ i.Phone }}</td>#}
+{#                <td>{{ i.Photo.url }}</td>#}
+{#                <td>#}
+{#                    {{ i.Place }}<br>#}
+{#                    {{ i.District }}<br>#}
+{#                    {{ i.Pin }}<br>#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}

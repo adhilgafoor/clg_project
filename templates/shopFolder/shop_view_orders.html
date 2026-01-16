@@ -1,0 +1,154 @@
+{#{% extends 'shopFolder/shop_home.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Services</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>SLNO</th>#}
+{#                <th>Date</th>#}
+{#                <th>Photo</th>#}
+{#                <th>ProductDetails</th>#}
+{#                <th>Quantity</th>#}
+{#                <th>Customer</th>#}
+{#                <th>CustomerAddress</th>#}
+{#                <th>Amount</th>#}
+{#                <th>Status</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#               <td>{{ forloop.counter }}</td>#}
+{#               <td>{{ i.ORDERMAIN.Date }}</td>#}
+{##}
+{#                <td>#}
+{#                    <img src=" {{ i.PRODUCT.Photo.url }}" height="100" width="100">#}
+{#                </td>#}
+{#                <td>{{ i.PRODUCT.Product }}<br><br>#}
+{#                     {{ i.Quantity }}</td>#}
+{#                 <td>{{ i.Quantity }}</td>#}
+{##}
+{#                <td>#}
+{#                    {{ i.ORDERMAIN.USER.Name }}<br><br>#}
+{#                    {{ i.ORDERMAIN.USER.Email }}<br><br>#}
+{#                    {{ i.ORDERMAIN.USER.Phone }}<br><br>#}
+{#                </td>#}
+{##}
+{#                <td>#}
+{#                    {{ i.ORDERMAIN.USER.Place }}<br><br>#}
+{#                    {{ i.ORDERMAIN.USER.District }}<br><br>#}
+{#                    {{ i.ORDERMAIN.USER.Pin }}<br><br>#}
+{#                </td>#}
+{#                <td>{{ i.ORDERMAIN.Amount }}</td>#}
+{#                <td>{{ i.ORDERMAIN.Status }}</td>#}
+{##}
+{#                <td>#}
+{#                <a href="/shop_edit_products/{{ i.id }}">Edit Product</a><br><br>#}
+{#                <a href="/shop_delete_products/{{ i.id }}">Delete Product</a><br><br>#}
+{#                <a href="/shop_add_offers/{{ i.id }}">Add Offers</a>#}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{% extends 'shopFolder/shop_home.html' %}
+{% block body %}
+
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Services Management</h1>
+
+        <!-- Search Bar -->
+        <div style="margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="Search by Customer or Product..." style="width: 100%; max-width: 400px; padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none;" onkeyup="searchTable()">
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <form method="post">
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="background-color: #4f46e5; color: white;">
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">SLNO</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Date</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Photo</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Product Details</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Quantity</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Customer</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Customer Address</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Amount</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Status</th>
+                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Chat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesTable">
+                            {% for i in data %}
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 12px; color: #374151;">{{ forloop.counter }}</td>
+                                <td style="padding: 12px; color: #374151; white-space: nowrap;">{{ i.orderdata.ORDERMAIN.Date }}</td>
+                                <td style="padding: 12px;">
+                                    <img src="{{ i.orderdata.PRODUCT.Photo.url }}" height="60" width="60" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb;">
+                                </td>
+                                <td style="padding: 12px; color: #374151;">
+                                    {{ i.orderdata.PRODUCT.Product }}<br><br>
+                                    {{ i.orderdata.PRODUCT.Price }}<br>
+                                </td>
+                                <td style="padding: 12px; color: #374151;">{{ i.orderdata.Quantity }}</td>
+                                <td style="padding: 12px; color: #374151;">
+                                    {{ i.orderdata.ORDERMAIN.USER.Name }}<br>
+                                    {{ i.orderdata.ORDERMAIN.USER.Email }}<br>
+                                    {{ i.orderdata.ORDERMAIN.USER.Phone }}
+                                </td>
+                                <td style="padding: 12px; color: #374151;">
+                                    {{ i.orderdata.ORDERMAIN.USER.Place }}<br>
+                                    {{ i.orderdata.ORDERMAIN.USER.District }}<br>
+                                    {{ i.orderdata.ORDERMAIN.USER.Pin }}
+                                </td>
+                                <td style="padding: 12px; color: #10b981; font-weight: 600; white-space: nowrap;">₹{{ i.total }}</td>
+                                <td style="padding: 12px; color: #374151;">{{ i.orderdata.ORDERMAIN.Status }}</td>
+
+                                 <td style="padding: 12px; color: #10b981; font-weight: 600; white-space: nowrap;">
+                                        <a href="/chat2/{{ i.orderdata.ORDERMAIN.USER.USER.id }}" class="badge bg-success">Chat</a>
+                                    </td>
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function searchTable() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('servicesTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                // Search in Product Details (index 3) and Customer (index 5)
+                if (cells[3] && cells[5]) {
+                    const productText = cells[3].textContent.toLowerCase();
+                    const customerText = cells[5].textContent.toLowerCase();
+                    if (productText.includes(input) || customerText.includes(input)) {
+                        match = true;
+                    }
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+{% endblock %}

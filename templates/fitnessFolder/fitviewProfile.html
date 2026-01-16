@@ -1,0 +1,161 @@
+{% extends 'fitnessFolder/main_home_page.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container py-5" style="background: #f8fdff; min-height: 100vh;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold" style="color: #0069d9;">
+                    Business Profile
+                </h1>
+                <p class="text-muted fs-5">Manage your business details</p>
+            </div>
+
+            <!-- Main Profile Card -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="background: white;">
+                <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #0069d9, #0077cc);">
+                    <h3 class="mb-0">{{ data.Name }}</h3>
+                    <span class="badge bg-light text-dark fs-6 mt-2 px-3 py-2">
+                        {{ data.Type|capfirst }}
+                    </span>
+                    <div class="mt-3">
+                        <span class="badge fs-6 px-4 py-2" style="background: {% if data.status == 'approved' %}#d4edda; color:#155724{% elif data.status == 'pending' %}#fff3cd; color:#856404{% else %}#f8d7da; color:#721c24{% endif %};">
+                            {{ data.status|capfirst }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-body p-5">
+
+                    <!-- Basic Information -->
+                    <div class="mb-5">
+                        <h4 class="fw-bold text-primary mb-4" style="color: #0069d9 !important;">
+                            Basic Information
+                        </h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-envelope me-3" style="color: #0069d9; font-size: 20px;"></i>
+                                    <div>
+                                        <small class="text-muted">Email</small>
+                                        <p class="mb-0 fw-medium">{{ data.Email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-phone me-3" style="color: #0069d9; font-size: 20px;"></i>
+                                    <div>
+                                        <small class="text-muted">Phone</small>
+                                        <p class="mb-0 fw-medium">{{ data.Phone }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- Location Details -->
+                    <div class="mb-5">
+                        <h4 class="fw-bold text-primary mb-4" style="color: #0069d9 !important;">
+                            Location Details
+                        </h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-map-marker-alt me-3" style="color: #0069d9; font-size: 20px;"></i>
+                                    <div>
+                                        <small class="text-muted">Address</small>
+                                        <p class="mb-0 fw-medium">{{ data.Place }}, {{ data.District }} - {{ data.Pin }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-globe me-3" style="color: #0069d9; font-size: 20px;"></i>
+                                    <div>
+                                        <small class="text-muted">Coordinates</small>
+                                        <p class="mb-2 fw-medium">
+                                            Lat: {{ data.latitude }}, Long: {{ data.longitude }}
+                                        </p>
+                                        <a href="https://www.google.com/maps?q={{ data.latitude }},{{ data.longitude }}" 
+                                           target="_blank" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            Open in Google Maps
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- Documents & Photo -->
+                    <div class="mb-5">
+                        <h4 class="fw-bold text-primary mb-4" style="color: #0069d9 !important;">
+                            Business Documents
+                        </h4>
+                        <div class="row g-4 text-center">
+
+                            <!-- Business Photo -->
+                            <div class="col-md-6">
+                                <p class="text-muted mb-3">Business Photo</p>
+                                <a href="{{ data.Photo.url }}" target="_blank">
+                                    <img src="{{ data.Photo.url }}" 
+                                         alt="Business Photo" 
+                                         class="img-fluid rounded-3 shadow" 
+                                         style="max-height: 250px; object-fit: cover; transition: 0.3s;"
+                                         onmouseover="this.style.transform='scale(1.05)'"
+                                         onmouseout="this.style.transform='scale(1)'">
+                                </a>
+                            </div>
+
+                            <!-- Proof Document -->
+                            <div class="col-md-6">
+                                <p class="text-muted mb-3">Proof Document</p>
+                                <a href="{{ data.Proof.url }}" target="_blank">
+                                    <img src="{{ data.Proof.url }}" 
+                                         alt="Proof Document" 
+                                         class="img-fluid rounded-3 shadow" 
+                                         style="max-height: 250px; object-fit: cover; transition: 0.3s;"
+                                         onmouseover="this.style.transform='scale(1.05)'"
+                                         onmouseout="this.style.transform='scale(1)'">
+                                </a>
+                                <br>
+                                <small class="text-muted d-block mt-2">
+                                    Click image to view full size
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Button -->
+                    <div class="text-center mt-5">
+                        <a href="/fitness_Edit_profile#ab" 
+                           class="btn btn-lg px-5 py-3 fw-bold"
+                           style="background: linear-gradient(135deg, #0069d9, #0077cc); color: white; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,105,255,0.3);">
+                            Edit Profile
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Back to Dashboard Link -->
+            <div class="text-center mt-4">
+                <a href="/fitness_home/" class="text-decoration-none" style="color: #0069d9;">
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+{% endblock %}

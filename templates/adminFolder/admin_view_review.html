@@ -1,0 +1,290 @@
+{% extends 'adminFolder/adminindex.html' %}
+{% block body %}
+<body style="background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 600;">
+                <i class="fas fa-star" style="margin-right: 10px;"></i>Customer Reviews
+            </h1>
+            <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0; font-size: 14px;">
+                Manage and monitor customer reviews and ratings
+            </p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px;">
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #007bff;">
+                <h3 style="color: #007bff; margin: 0 0 5px 0; font-size: 24px;">{{ data|length }}</h3>
+                <p style="color: #6c757d; margin: 0; font-size: 14px;">Total Reviews</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #28a745;">
+                <h3 style="color: #28a745; margin: 0 0 5px 0; font-size: 24px;" id="avgRating">0.0</h3>
+                <p style="color: #6c757d; margin: 0; font-size: 14px;">Average Rating</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #ffc107;">
+                <h3 style="color: #ffc107; margin: 0 0 5px 0; font-size: 24px;" id="fiveStarCount">0</h3>
+                <p style="color: #6c757d; margin: 0; font-size: 14px;">5★ Reviews</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #6f42c1;">
+                <h3 style="color: #6f42c1; margin: 0 0 5px 0; font-size: 24px;" id="todayCount">0</h3>
+                <p style="color: #6c757d; margin: 0; font-size: 14px;">Today</p>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <!-- Table -->
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">#</th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-calendar" style="margin-right: 6px;"></i>Date
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-star" style="margin-right: 6px;"></i>Rating
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-comment" style="margin-right: 6px;"></i>Review
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-concierge-bell" style="margin-right: 6px;"></i>Service
+                        </th>
+                        <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #495057; border-bottom: 2px solid #dee2e6; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fas fa-user" style="margin-right: 6px;"></i>User
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid #e9ecef; transition: background-color 0.2s ease;">
+                        <td style="padding: 16px 12px; color: #6c757d; font-weight: 500; font-size: 14px;">{{ forloop.counter }}</td>
+                        <td style="padding: 16px 12px;">
+                            <span style="background: #f8f9fa; color: #495057; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">
+                                <i class="fas fa-clock" style="margin-right: 4px;"></i>{{ i.Date }}
+                            </span>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                {% if i.Rating %}
+                                    {% with i.Rating|add:"0" as rating_int %}
+                                        {% if rating_int >= 1 %}<i class="fas fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int >= 2 %}<i class="fas fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int >= 3 %}<i class="fas fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int >= 4 %}<i class="fas fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int >= 5 %}<i class="fas fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int < 1 %}<i class="far fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int < 2 %}<i class="far fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int < 3 %}<i class="far fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int < 4 %}<i class="far fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                        {% if rating_int < 5 %}<i class="far fa-star" style="color: #ffc107; font-size: 14px;"></i>{% endif %}
+                                    {% endwith %}
+                                    <span style="margin-left: 8px; color: #495057; font-weight: 600; font-size: 14px;">{{ i.Rating }}/5</span>
+                                {% else %}
+                                    <span style="color: #6c757d; font-size: 14px;">No Rating</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="max-width: 300px;">
+                                <p style="margin: 0; color: #495057; font-size: 14px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                    "{{ i.Review }}"
+                                </p>
+                            </div>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <span style="background: #007bff; color: white; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">
+                                {{ i.SERVICE.Servicename }}
+                            </span>
+                        </td>
+                        <td style="padding: 16px 12px;">
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #28a745;">
+                                <div style="font-weight: 600; color: #495057; font-size: 14px; margin-bottom: 4px;">{{ i.USER.Name }}</div>
+                                <div style="color: #6c757d; font-size: 13px;">
+                                    <i class="fas fa-envelope" style="margin-right: 4px;"></i>{{ i.USER.Email }}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="padding: 60px 20px; text-align: center;">
+                            <div style="color: #6c757d;">
+                                <i class="fas fa-star" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                <h3 style="margin: 0 0 8px 0; color: #495057;">No Reviews Found</h3>
+                                <p style="margin: 0;">There are no customer reviews available at the moment.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rating Summary -->
+        <div style="background: white; border-radius: 12px; padding: 25px; margin-top: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h3 style="color: #495057; margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">
+                <i class="fas fa-chart-bar" style="margin-right: 8px; color: #007bff;"></i>Rating Distribution
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                <div style="text-align: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <h4 style="color: #dc3545; margin: 0 0 8px 0; font-size: 20px;" id="oneStarCount">0</h4>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <h4 style="color: #fd7e14; margin: 0 0 8px 0; font-size: 20px;" id="twoStarCount">0</h4>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <h4 style="color: #ffc107; margin: 0 0 8px 0; font-size: 20px;" id="threeStarCount">0</h4>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <h4 style="color: #20c997; margin: 0 0 8px 0; font-size: 20px;" id="fourStarCount">0</h4>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <h4 style="color: #28a745; margin: 0 0 8px 0; font-size: 20px;" id="fiveStarCount">0</h4>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Calculate statistics
+        document.addEventListener('DOMContentLoaded', function() {
+            let totalRating = 0;
+            let validRatings = 0;
+            let fiveStarCount = 0;
+            let fourStarCount = 0;
+            let threeStarCount = 0;
+            let twoStarCount = 0;
+            let oneStarCount = 0;
+            let todayCount = 0;
+
+            const today = new Date().toISOString().split('T')[0];
+
+            // Count ratings safely
+            {% for i in data %}
+                const rating = "{{ i.Rating }}";
+                const ratingNum = parseInt(rating);
+
+                if (!isNaN(ratingNum) && ratingNum >= 1 && ratingNum <= 5) {
+                    totalRating += ratingNum;
+                    validRatings++;
+
+                    // Count by rating
+                    switch(ratingNum) {
+                        case 5: fiveStarCount++; break;
+                        case 4: fourStarCount++; break;
+                        case 3: threeStarCount++; break;
+                        case 2: twoStarCount++; break;
+                        case 1: oneStarCount++; break;
+                    }
+                }
+
+                // Count today's reviews
+                {% if i.Date == today %}
+                    todayCount++;
+                {% endif %}
+            {% endfor %}
+
+            const avgRating = validRatings > 0 ? (totalRating / validRatings).toFixed(1) : '0.0';
+
+            // Update statistics
+            document.getElementById('avgRating').textContent = avgRating;
+            document.getElementById('fiveStarCount').textContent = fiveStarCount;
+            document.getElementById('todayCount').textContent = todayCount;
+
+            // Update rating distribution
+            document.getElementById('oneStarCount').textContent = oneStarCount;
+            document.getElementById('twoStarCount').textContent = twoStarCount;
+            document.getElementById('threeStarCount').textContent = threeStarCount;
+            document.getElementById('fourStarCount').textContent = fourStarCount;
+            document.getElementById('fiveStarCount').textContent = fiveStarCount;
+
+            // Add hover effects to table rows
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                });
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+{% endblock %}
+
+{#{% extends 'adminFolder/adminindex.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#    <h1>Review</h1>#}
+{#<form method="post">#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Slno</th>#}
+{#                <th>Date</th>#}
+{#                <th>Review</th>#}
+{#                <th>Rating</th>#}
+{#                <th>Service</th>#}
+{#                <th>User</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ forloop.counter }}</td>#}
+{#                <td>{{ i.Date }}</td>#}
+{#                <td>{{ i.Rating }}</td>#}
+{#                <td>{{ i.Review }}</td>#}
+{#                <td>{{ i.SERVICE.Servicename }}</td>#}
+{#                <td>#}
+{#                    {{ i.USER.Name }}<br>#}
+{#                    {{ i.USER.Email }}<br>#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}

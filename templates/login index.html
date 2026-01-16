@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Near Live - Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/glassm-theme.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .brand-subtitle {
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <div class="login-container">
+        <div class="glass-card login-card">
+            <div class="brand-logo">
+                <i class="fas fa-shopping-basket"></i> NearLive
+            </div>
+            <p class="brand-subtitle">Welcome Back! detailed services near you.</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3" style="text-align: left;">
+                    <label class="mb-3" style="font-size: 0.9rem; margin-left: 5px;">Username</label>
+                    <input type="text" name="username" class="glass-input" placeholder="Enter username" required>
+                </div>
+
+                <div class="mb-4" style="text-align: left;">
+                    <label class="mb-3" style="font-size: 0.9rem; margin-left: 5px;">Password</label>
+                    <input type="password" name="password" class="glass-input" placeholder="Enter password" required>
+                </div>
+
+                <div class="mb-4" style="text-align: right;">
+                    <a href="/ForgotPassword/" class="glass-link" style="font-size: 0.85rem;">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="glass-btn w-full mb-4">Login</button>
+
+                <div style="font-size: 0.9rem;">
+                    Don't have an account? 
+                    <a href="/BuissnessAccount_Reg" class="glass-link" style="font-weight: 600;">Register Here</a>
+                </div>
+            </form>
+            
+            {% if messages %}
+            <div style="margin-top: 20px;">
+                {% for message in messages %}
+                <div style="background: rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.3); padding: 10px; border-radius: 8px; color: white;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
