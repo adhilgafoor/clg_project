@@ -1,110 +1,83 @@
-{% extends 'Service Provider folder/service_provider_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 1400px; margin: 0 auto;">
-        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Service Requests</h1>
+{% extends 'Service Provider folder/base_provider.html' %}
 
-        <!-- Search Bar and Date Range Filter -->
-        <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
-            <input type="text" id="searchInput" placeholder="Search by Service or User..."
-                   style="width: 100%; max-width: 400px; padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none;"
-                   onkeyup="searchTable()">
-            <form method="post" action="/provider_viewRequests_search" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                {% csrf_token %}
-                <div>
-                    <input type="date" name="fdate" placeholder="From Date"
-                           style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
-                </div>
-                <div>
-                    <input type="date" name="tdate" placeholder="To Date"
-                           style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
-                </div>
-                <button type="submit"
-                        style="padding: 10px 20px; background-color: #4f46e5; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s;">
-                    Search
-                </button>
-            </form>
-        </div>
+{% block content %}
+<div class="container-fluid">
+    <div class="card-glass">
+        <h3 class="mb-4"><i class="fas fa-clipboard-list me-2"></i>Service Requests</h3>
 
-        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                    <thead>
-                        <tr style="background-color: #4f46e5; color: white;">
-                            <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">SLNO</th>
-                            <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Date</th>
-                            <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Service</th>
-                            <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">User Details</th>
-                            <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Status</th>
-                            <th style="padding: 14px 12px; text-align: center; font-weight: 600; white-space: nowrap;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="requestsTable">
-                        {% for i in data %}
-                        <tr style="border-bottom: 1px solid #e5e7eb;">
-                            <td style="padding: 12px; color: #374151;">{{ forloop.counter }}</td>
-                            <td style="padding: 12px; color: #374151; white-space: nowrap;" data-date="{{ i.Date|date:'Y-m-d' }}">{{ i.Date }}</td>
-                            <td style="padding: 12px; color: #374151; font-weight: 500;">{{ i.SERVICE.Servicename }}</td>
-                            <td style="padding: 12px; color: #374151;">
-                                <strong>{{ i.USER.Name }}</strong><br>
-                                {{ i.USER.Email }}<br>
-                                {{ i.USER.Phone }}
-                            </td>
-                            <td style="padding: 12px; color: #374151;">{{ i.Status }}</td>
-                            <td style="padding: 12px; text-align: center;">
-                                <a href="/provider_Requests_Approve/{{ i.id }}#ab"
-                                   style="display: inline-block; padding: 6px 12px; background-color: #10b981; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Approve</a>
-                                <a href="/provider_Requests_Reject/{{ i.id }}#ab"
-                                   style="display: inline-block; padding: 6px 12px; background-color: #ef4444; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Reject</a>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="6" style="padding: 20px; text-align: center; color: #6b7280;">No service requests found.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <!-- Search & Filter -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <input type="text" id="searchInput" class="glass-input form-control"
+                    placeholder="Search Service or User..." onkeyup="searchTable()">
+            </div>
+            <div class="col-md-8">
+                <form method="post" action="/provider_viewRequests_search" class="d-flex gap-2 align-items-center">
+                    {% csrf_token %}
+                    <input type="date" name="fdate" class="glass-input form-control text-white" placeholder="From Date">
+                    <span class="text-white">to</span>
+                    <input type="date" name="tdate" class="glass-input form-control text-white" placeholder="To Date">
+                    <button type="submit" class="glass-btn bg-primary border-0">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
             </div>
         </div>
+
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--glass-border);">
+                        <th>SL</th>
+                        <th>Date</th>
+                        <th>Service</th>
+                        <th>User Details</th>
+                        <th>Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="requestsTable">
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td class="align-middle">{{ forloop.counter }}</td>
+                        <td class="align-middle">{{ i.Date }}</td>
+                        <td class="align-middle fw-bold">{{ i.SERVICE.Servicename }}</td>
+                        <td class="align-middle">
+                            <i class="fas fa-user-circle me-1 text-info"></i> {{ i.USER.Name }}<br>
+                            <small class="text-muted"><i class="fas fa-envelope me-1"></i> {{ i.USER.Email
+                                }}</small><br>
+                            <small class="text-muted"><i class="fas fa-phone me-1"></i> {{ i.USER.Phone }}</small>
+                        </td>
+                        <td class="align-middle"><span class="badge bg-warning text-dark">{{ i.Status }}</span></td>
+                        <td class="align-middle text-center">
+                            <a href="/provider_Requests_Approve/{{ i.id }}"
+                                class="glass-btn btn-sm bg-success border-0 me-1">
+                                <i class="fas fa-check"></i> Approve
+                            </a>
+                            <a href="/provider_Requests_Reject/{{ i.id }}" class="glass-btn btn-sm bg-danger border-0">
+                                <i class="fas fa-times"></i> Reject
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">No pending requests found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
 
-    <script>
-        function searchTable() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const table = document.getElementById('requestsTable');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let match = false;
-
-                // Search in Service Name (index 2), User Details (index 3), and Status (index 4)
-                if (cells[2] && cells[3] && cells[4]) {
-                    const serviceText = cells[2].textContent.toLowerCase();
-                    const userText = cells[3].textContent.toLowerCase();
-                    const statusText = cells[4].textContent.toLowerCase();
-                    if (serviceText.includes(input) || userText.includes(input) || statusText.includes(input)) {
-                        match = true;
-                    }
-                }
-
-                rows[i].style.display = match ? '' : 'none';
-            }
-        }
-    </script>
-
-    <style>
-        input:focus, button:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-        button:hover {
-            background-color: #4338ca;
-        }
-        a:hover {
-            opacity: 0.9;
-        }
-    </style>
-</body>
+<script>
+    function searchTable() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#requestsTable tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    }
+</script>
 {% endblock %}

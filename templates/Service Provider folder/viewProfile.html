@@ -1,99 +1,68 @@
-{#{% extends 'Service Provider folder/service_provider_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Business Account Profile</h1>#}
-{##}
-{#    <div>#}
-{#        <h2>Basic Information</h2>#}
-{#        <p><strong>Name:</strong> {{ data.Name }}</p>#}
-{#        <p><strong>Email:</strong> {{ data.Email }}</p>#}
-{#        <p><strong>Phone:</strong> {{ data.Phone }}</p>#}
-{#        <p><strong>Type:</strong> {{ data.Type }}</p>#}
-{#        <p><strong>Status:</strong> {{ data.status }}</p>#}
-{#    </div>#}
-{##}
-{#    <div>#}
-{#        <h2>Location Details</h2>#}
-{#        <p><strong>Place:</strong> {{ data.Place }}</p>#}
-{#        <p><strong>District:</strong> {{ data.District }}</p>#}
-{#        <p><strong>Pin Code:</strong> {{ data.Pin }}</p>#}
-{#        <p><strong>Location:</strong> <a href="https://www.google.com/maps?q={{ data.latitude }},{{ data.longitude }}" target="_blank">Map</a> </p>#}
-{#    </div>#}
-{##}
-{#    <div>#}
-{#        <h2>Documents</h2>#}
-{#        <p><strong>Photo:</strong>#}
-{#            <img src="{{ data.Photo.url }}" height="100" width="100">#}
-{#            <a href="{{ data.Photo.url }}">View Photo</a></p>#}
-{#        <p><strong>Proof:</strong>#}
-{#          <img src="{{ data.Proof.url }}" height="100" width="100">#}
-{#            <a href="{{ data.Proof.url }}">View Proof Document</a></p>#}
-{#    </div>#}
-{#<div>#}
-{#    <a href="/serviceProvider_Edit_profile#ab">Edit</a>#}
-{#</div>#}
-{##}
-{##}
-{#</body>#}
-{#{% endblock %}#}
-{% extends 'Service Provider folder/service_provider_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 30px;">
-        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Business Account Profile</h1>
+{% extends 'Service Provider folder/base_provider.html' %}
 
-        <div style="margin-bottom: 20px;">
-            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Basic Information</h2>
-            <p style="color: #374151; margin: 10px 0;"><strong>Name:</strong> {{ data.Name|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Email:</strong> {{ data.Email|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Phone:</strong> {{ data.Phone|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Type:</strong> {{ data.Type|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Status:</strong> {{ data.status|default:"Not provided" }}</p>
-        </div>
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-glass position-relative overflow-hidden">
+                <!-- Decorative Circle -->
+                <div class="position-absolute top-0 end-0 p-5 rounded-circle bg-primary opacity-25"
+                    style="margin-right: -50px; margin-top: -50px;"></div>
 
-        <div style="margin-bottom: 20px;">
-            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Location Details</h2>
-            <p style="color: #374151; margin: 10px 0;"><strong>Place:</strong> {{ data.Place|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>District:</strong> {{ data.District|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Pin Code:</strong> {{ data.Pin|default:"Not provided" }}</p>
-            <p style="color: #374151; margin: 10px 0;"><strong>Location:</strong>
-                <a href="https://www.google.com/maps?q={{ data.latitude|default:'0' }},{{ data.longitude|default:'0' }}"
-                   target="_blank" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View on Map</a>
-            </p>
-        </div>
+                <div class="text-center pt-4 pb-4">
+                    {% if data.photo %}
+                    <img src="{{ data.photo.url }}" class="rounded-circle border border-4 border-white shadow-lg mb-3"
+                        style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                    <img src="/static/hometemp/img/user.jpg"
+                        class="rounded-circle border border-4 border-white shadow-lg mb-3"
+                        style="width: 150px; height: 150px; object-fit: cover;">
+                    {% endif %}
 
-        <div style="margin-bottom: 20px;">
-            <h2 style="color: #2d3748; font-size: 22px; margin-bottom: 15px; font-weight: 600;">Documents</h2>
-            <p style="color: #374151; margin: 10px 0;">
-                <strong>Photo:</strong><br>
-                {% if data.Photo.url %}
-                    <img src="{{ data.Photo.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb; margin: 10px 0;">
-                    <a href="{{ data.Photo.url }}" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View Photo</a>
-                {% else %}
-                    <span style="color: #6b7280;">No photo available</span>
-                {% endif %}
-            </p>
-            <p style="color: #374151; margin: 10px 0;">
-                <strong>Proof:</strong><br>
-                {% if data.Proof.url %}
-                    <img src="{{ data.Proof.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb; margin: 10px 0;">
-                    <a href="{{ data.Proof.url }}" style="color: #4f46e5; text-decoration: none; font-weight: 500;">View Proof Document</a>
-                {% else %}
-                    <span style="color: #6b7280;">No proof document available</span>
-                {% endif %}
-            </p>
-        </div>
+                    <h2 class="fw-bold text-white mb-1">{{ data.Name }}</h2>
+                    <span class="badge bg-success rounded-pill px-3">Verified Service Provider</span>
+                </div>
 
-        <div style="text-align: center;">
-            <a href="/serviceProvider_Edit_profile#ab"
-               style="display: inline-block; padding: 10px 20px; background-color: #4f46e5; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 500; transition: background-color 0.2s;">Edit Profile</a>
+                <div class="row g-4 mt-2 px-4 pb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <small class="text-muted d-block mb-1">Email Address</small>
+                            <div class="fw-bold"><i class="fas fa-envelope me-2 text-primary"></i> {{ data.Email }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <small class="text-muted d-block mb-1">Phone Number</small>
+                            <div class="fw-bold"><i class="fas fa-phone me-2 text-primary"></i> {{ data.Phone }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <small class="text-muted d-block mb-1">Location</small>
+                            <div class="fw-bold"><i class="fas fa-map-marker-alt me-2 text-primary"></i> {{ data.Place
+                                }}, {{ data.Post }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <small class="text-muted d-block mb-1">PIN Code</small>
+                            <div class="fw-bold"><i class="fas fa-thumbtack me-2 text-primary"></i> {{ data.Pin }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pb-4 px-4">
+                    <a href="/provider_edit_profile/{{ data.id }}" class="glass-btn w-100">
+                        <i class="fas fa-edit me-2"></i> Edit Profile Information
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-
-    <style>
-        a:hover {
-            opacity: 0.9;
-        }
-    </style>
-</body>
+</div>
 {% endblock %}

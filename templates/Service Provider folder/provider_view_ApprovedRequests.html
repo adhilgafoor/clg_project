@@ -1,119 +1,72 @@
-{#{% extends 'Service Provider folder/service_provider_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Services</h1>#}
-{#<form method="post">#}
-{#    <table border="1">#}
-{#        <thead>#}
-{#            <tr>#}
-{#                <th>Slno</th>#}
-{#                <th>Date</th>#}
-{#                <th>Service</th>#}
-{#                <th>UserDetails</th>#}
-{#                <th>Chat</th>#}
-{#            </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#            {% for i in data %}#}
-{#            <tr>#}
-{#                <td>{{ forloop.counter }}</td>#}
-{#                <td>{{ i.Date }}</td>#}
-{#                <td>{{ i.SERVICE.Servicename }}</td>#}
-{#                <td>#}
-{#                    {{ i.USER.Name }}<br><br>#}
-{#                    {{ i.USER.Email }}<br><br>#}
-{#                    {{ i.USER.Phone }}<br><br>#}
-{##}
-{#                </td>#}
-{#                <td><a href="">Chat</a></td>#}
-{##}
-{#            </tr>#}
-{#            {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
-{#</form>#}
-{#</body>#}
+{% extends 'Service Provider folder/base_provider.html' %}
 
-{% extends 'Service Provider folder/service_provider_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 1400px; margin: 0 auto;">
-        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Service Bookings</h1>
+{% block content %}
+<div class="container-fluid">
+    <div class="card-glass">
+        <h3 class="mb-4"><i class="fas fa-check-circle me-2"></i>Approved Bookings</h3>
 
-        <!-- Search Bar -->
-        <div style="margin-bottom: 20px;">
-            <input type="text" id="searchInput" placeholder="Search by Service or User..."
-                   style="width: 100%; max-width: 400px; padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none;"
-                   onkeyup="searchTable()">
+        <!-- Search -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" id="searchInput" class="glass-input form-control"
+                    placeholder="Search Service or User..." onkeyup="searchTable()">
+            </div>
         </div>
 
-        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
-            <form method="post">
-                {% csrf_token %}
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                        <thead>
-                            <tr style="background-color: #4f46e5; color: white;">
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">SLNO</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Date</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Service</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">User Details</th>
-                                <th style="padding: 14px 12px; text-align: center; font-weight: 600; white-space: nowrap;">Chat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookingsTable">
-                            {% for i in data %}
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 12px; color: #374151;">{{ forloop.counter }}</td>
-                                <td style="padding: 12px; color: #374151; white-space: nowrap;">{{ i.Date }}</td>
-                                <td style="padding: 12px; color: #374151; font-weight: 500;">{{ i.SERVICE.Servicename }}</td>
-                                <td style="padding: 12px; color: #374151;">
-                                    <strong>{{ i.USER.Name }}</strong><br>
-                                    {{ i.USER.Email }}<br>
-                                    {{ i.USER.Phone }}<br>
-                                    {{ i.USER.USER.id }}
-                                </td>
-                                <td style="padding: 12px; text-align: center;">
-                                    <a href="/prochat/{{ i.USER.USER.id }}/"
-                                       style="display: inline-block; padding: 6px 12px; background-color: #10b981; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: 500;">
-                                        Chat
-                                    </a>
-                                </td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="5" style="padding: 20px; text-align: center; color: #6b7280;">No bookings found.</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--glass-border);">
+                        <th>SL</th>
+                        <th>Date</th>
+                        <th>Service</th>
+                        <th>User Details</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsTable">
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td class="align-middle">{{ forloop.counter }}</td>
+                        <td class="align-middle">{{ i.Date }}</td>
+                        <td class="align-middle fw-bold text-success">{{ i.SERVICE.Servicename }}</td>
+                        <td class="align-middle">
+                            <div class="d-flex align-items-center">
+                                <div class="message-avatar rounded-circle bg-primary d-flex align-items-center justify-content-center text-white me-2"
+                                    style="width: 30px; height: 30px; font-size: 12px;">
+                                    {{ i.USER.Name|slice:":1" }}
+                                </div>
+                                <div>
+                                    <div class="fw-bold">{{ i.USER.Name }}</div>
+                                    <small class="text-muted">{{ i.USER.Phone }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center">
+                            <a href="/prochat/{{ i.USER.USER.id }}/" class="glass-btn btn-sm bg-info border-0">
+                                <i class="fas fa-comments me-1"></i> Chat
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-muted">No approved bookings found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <script>
-        function searchTable() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const table = document.getElementById('bookingsTable');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let match = false;
-
-                // Search in Service Name (index 2) and User Details (index 3)
-                if (cells[2] && cells[3]) {
-                    const serviceText = cells[2].textContent.toLowerCase();
-                    const userText = cells[3].textContent.toLowerCase();
-                    if (serviceText.includes(input) || userText.includes(input)) {
-                        match = true;
-                    }
-                }
-
-                rows[i].style.display = match ? '' : 'none';
-            }
-        }
-    </script>
-</body>
-{% endblock %}}
+<script>
+    function searchTable() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#bookingsTable tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    }
+</script>
+{% endblock %}
