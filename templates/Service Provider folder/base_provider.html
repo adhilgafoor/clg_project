@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NearLive - Service Provider</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicon -->
+    <link href="/static/hometemp/img/favicon.ico" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap & Glass Theme -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/glassm-theme.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: var(--main-gradient);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        /* Sidebar Glass Style */
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--glass-border);
+            color: #fff;
+            transition: all 0.3s;
+            min-height: 100vh;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+        }
+
+        #sidebar ul li a {
+            padding: 15px 20px;
+            font-size: 1.1em;
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        #sidebar ul li a:hover,
+        #sidebar ul li a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        #sidebar ul li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Content Area */
+        #content {
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+
+        /* Navbar Glass Style */
+        .glass-navbar {
+            padding: 15px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--glass-shadow);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile specific */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tools me-2"></i>NearLive</h3>
+                <small class="text-muted">Service Provider Panel</small>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/service_provider_home"
+                        class="{% if request.path == '/service_provider_home' %}active{% endif %}">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/service_providerProfile" class="{% if 'Profile' in request.path %}active{% endif %}">
+                        <i class="fas fa-user-circle"></i> My Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#servicesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-concierge-bell"></i> Services
+                    </a>
+                    <ul class="collapse list-unstyled ps-4" id="servicesSubmenu">
+                        <li><a href="/provider_addServices">Add Service</a></li>
+                        <li><a href="/provider_viewServices">View Services</a></li>
+                        <li><a href="/provider_viewCategory">Categories</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#bookingSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-calendar-check"></i> Bookings
+                    </a>
+                    <ul class="collapse list-unstyled ps-4" id="bookingSubmenu">
+                        <li><a href="/provider_viewRequests">New Requests</a></li>
+                        <li><a href="/provider_viewApproved_Requests">Approved</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#availabilitySubmenu" data-bs-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">
+                        <i class="fas fa-clock"></i> Availability
+                    </a>
+                    <ul class="collapse list-unstyled ps-4" id="availabilitySubmenu">
+                        <li><a href="/provider_addavailability">Set Status</a></li>
+                        <li><a href="/provider_viewStatus">View Status</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/service_changepassword">
+                        <i class="fas fa-key"></i> Change Password
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light glass-navbar">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="glass-btn btn-sm">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="ms-auto d-flex align-items-center">
+                        <span class="text-white me-3">Welcome, Service Provider</span>
+                        <a href="/logoutss" class="glass-btn btn-sm text-danger" onclick="return confirm('Logout?');">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Block -->
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
