@@ -1,88 +1,52 @@
-{##}
-{#{% extends 'fitnessFolder/main_home_page.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Edit</h1>#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <div>#}
-{#            <label for="name">Name:</label>#}
-{#            <input type="text" id="name" value="{{ data.facilityName }}" name="name" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label for="photo"> Photo:</label>#}
-{#            <img src="{{ data.Photo.url  }}" height="100" width="100">#}
-{#            <input type="file" id="photo" value="{{ data.Photo }}" name="photo">#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label for="details">Service Details:</label>#}
-{#            <input type="text" value="{{ data.Details }}" id="details" name="details" >#}
-{##}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <button type="submit">Edit</button>#}
-{#        </div>#}
-{#    </form>#}
-{#</body>#}
-{#{% endblock %}#}
+{% extends 'fitnessFolder/base_fitness.html' %}
 
-{% extends 'fitnessFolder/main_home_page.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 0; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 30px;">
-        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Edit Facility</h1>
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Facility</h3>
+                    <a href="/fitness_view_facility" class="glass-btn btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i> Back
+                    </a>
+                </div>
 
-        <form method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px;">
-            {% csrf_token %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            <div style="display: flex; flex-direction: column;">
-                <label for="name" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">Facility Name:</label>
-                <input type="text" id="name" name="name" value="{{ data.facilityName|default:'' }}" required style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
+                    <div class="mb-3">
+                        <label class="form-label">Facility Name</label>
+                        <input type="text" name="name" value="{{ data.facilityName }}" class="glass-input form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Update Photo</label>
+                        <input type="file" name="photo" class="glass-input form-control" accept="image/*">
+                        {% if data.Photo %}
+                        <div class="mt-2 text-end">
+                            <small class="text-white me-2">Current:</small>
+                            <img src="{{ data.Photo.url }}" class="rounded border"
+                                style="width: 40px; height: 40px; object-fit: cover;">
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Details</label>
+                        <textarea name="details" class="glass-input form-control" rows="4"
+                            required>{{ data.Details }}</textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="glass-btn w-100 bg-success border-0">
+                            <i class="fas fa-save me-2"></i> Update Facility
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label for="photo" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">Photo:</label>
-                {% if data.Photo.url %}
-                    <img src="{{ data.Photo.url }}" height="100" width="100" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb; margin-bottom: 10px;">
-                    <a href="{{ data.Photo.url }}" style="color: #4f46e5; text-decoration: none; font-size: 13px; margin-bottom: 10px; display: inline-block;">View Current Photo</a>
-                {% else %}
-                    <span style="color: #6b7280; margin-bottom: 10px; display: inline-block;">No photo available</span>
-                {% endif %}
-                <input type="file" id="photo" name="photo" style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s;">
-            </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label for="details" style="font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 500;">Facility Details:</label>
-                <textarea id="details" name="details" rows="4" required style="padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none; background-color: #f9fafb; transition: border-color 0.2s; resize: vertical; min-height: 100px;">{{ data.Details|default:'' }}</textarea>
-            </div>
-
-            <div style="text-align: center;">
-                <button type="submit" style="padding: 12px 24px; background-color: #4f46e5; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; width: 100%; max-width: 200px;">Update Facility</button>
-            </div>
-        </form>
+        </div>
     </div>
-
-    <style>
-        input:focus, textarea:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-        button:hover {
-            background-color: #4338ca;
-        }
-        textarea {
-            min-height: 100px;
-        }
-        a:hover {
-            opacity: 0.9;
-        }
-    </style>
-</body>
+</div>
 {% endblock %}

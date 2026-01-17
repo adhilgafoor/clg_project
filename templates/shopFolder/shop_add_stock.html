@@ -1,31 +1,39 @@
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 40px;">
-        <h1 style="color: #2d3748; font-size: 26px; margin-bottom: 30px; text-align: center; font-weight: 600;">Update Stock</h1>
+{% extends 'shopFolder/base_shop.html' %}
 
-        <form name="form1" method="post">
-            {% csrf_token %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <h3 class="mb-4 border-bottom pb-2"><i class="fas fa-boxes me-2"></i>Update Stock</h3>
 
-            <div style="margin-bottom: 20px;">
-                <label for="select" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Product</label>
-                <select name="select" id="select" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; cursor: pointer; box-sizing: border-box;">
-                    <option value="">Select a product</option>
-                    {% for i in data %}
-                    <option value="{{ i.id }}">{{ i.Product }}</option>
-                    {% endfor %}
-                </select>
+                <form name="form1" method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Product</label>
+                        <select name="select" id="select" class="glass-input form-select" required>
+                            <option value="" disabled selected class="text-dark">Select a product</option>
+                            {% for i in data %}
+                            <option value="{{ i.id }}" class="text-dark">{{ i.Product }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Stock Quantity</label>
+                        <input type="number" name="stock" id="textfield3" class="glass-input form-control"
+                            placeholder="Enter quantity" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" name="button" id="button" class="glass-btn w-100 bg-success border-0">
+                            <i class="fas fa-plus-circle me-2"></i> Update Stock
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="textfield3" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Stock</label>
-                <input type="text" name="stock" id="textfield3" placeholder="Enter stock quantity" style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;" />
-            </div>
-
-            <div style="margin-top: 25px;">
-                <button type="submit" name="button" id="button" style="width: 100%; padding: 12px; background-color: #10b981; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">Submit</button>
-            </div>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 {% endblock %}

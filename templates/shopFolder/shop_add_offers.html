@@ -1,102 +1,51 @@
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', sans-serif; background-color: #f4f6f8; margin: 0; padding: 30px;">
+{% extends 'shopFolder/base_shop.html' %}
 
-    <div style="max-width: 500px; margin: 50px auto; background-color: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <h1 style="text-align: center; margin-bottom: 30px; color: #007bff;">Add Offer</h1>
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <h3 class="mb-4 border-bottom pb-2"><i class="fas fa-tag me-2"></i>Create New Offer</h3>
 
-        <form method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px;">
-            {% csrf_token %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            <div style="display: flex; flex-direction: column;">
-                <label for="name" style="margin-bottom: 5px; font-weight: 500;">Offer Name:</label>
-                <input type="text" id="name" name="Offername" required
-                       style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 15px;">
+                    <div class="mb-3">
+                        <label class="form-label">Offer Name</label>
+                        <input type="text" name="Offername" class="glass-input form-control"
+                            placeholder="e.g. Summer Sale" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Offer Price</label>
+                        <input type="number" name="price" class="glass-input form-control" placeholder="0.00" required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <label class="form-label">From Date</label>
+                            <input type="date" name="Fromdate" class="glass-input form-control text-white" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">To Date</label>
+                            <input type="date" name="Todate" class="glass-input form-control text-white" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Details</label>
+                        <textarea name="Details" class="glass-input form-control" rows="3"
+                            placeholder="Description of the offer..." required></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="glass-btn w-100 bg-primary border-0">
+                            <i class="fas fa-check-circle me-2"></i> Create Offer
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label for="price" style="margin-bottom: 5px; font-weight: 500;">Offer Price:</label>
-                <input type="text" id="price" name="price" required
-                       style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 15px;">
-            </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label style="margin-bottom: 5px; font-weight: 500;">From Date:</label>
-                <input type="date" name="Fromdate" required
-                       style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 15px;">
-            </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label style="margin-bottom: 5px; font-weight: 500;">To Date:</label>
-                <input type="date" name="Todate" required
-                       style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 15px;">
-            </div>
-
-            <div style="display: flex; flex-direction: column;">
-                <label for="detail" style="margin-bottom: 5px; font-weight: 500;">Details:</label>
-                <input type="text" id="detail" name="Details" required
-                       style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 15px;">
-            </div>
-
-            <div style="text-align: center;">
-                <button type="submit"
-                    style="background-color: #007bff; border: none; color: white; padding: 10px 25px; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;">
-                    Add Offer
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 {% endblock %}
-
-
-
-
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#    <title>Add Products</title>#}
-{#</head>#}
-{#{% extends 'shopFolder/shop_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Products</h1>#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <div>#}
-{#            <label for="name">Offer Name:</label>#}
-{#            <input type="text" id="name" name="Offername" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="pr">Offer Price:</label>#}
-{#            <input type="text" id="price" name="price" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label >Fromdate:</label>#}
-{#            <input type="date"  name="Fromdate" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label>Todate:</label>#}
-{#            <input type="date"  name="Todate" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label>Details:</label>#}
-{#            <input type="text" id="detail" name="Details" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <button type="submit">Add</button>#}
-{#        </div>#}
-{#    </form>#}
-{#</body>#}
-{#</html>#}
-{#{% endblock %}#}

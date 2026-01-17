@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NearLive - Fitness Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicon -->
+    <link href="/static/hometemp/img/favicon.ico" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap & Glass Theme -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/glassm-theme.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: var(--main-gradient);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        /* Sidebar Glass Style */
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--glass-border);
+            color: #fff;
+            transition: all 0.3s;
+            min-height: 100vh;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+        }
+
+        #sidebar ul li a {
+            padding: 10px 20px;
+            font-size: 1.0em;
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        #sidebar ul li a:hover,
+        #sidebar ul li a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        #sidebar ul li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Submenu */
+        #sidebar ul ul a {
+            font-size: 0.9em;
+            padding-left: 40px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Content Area */
+        #content {
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+
+        /* Navbar Glass Style */
+        .glass-navbar {
+            padding: 15px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--glass-shadow);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-dumbbell me-2"></i>NearLive</h3>
+                <small class="text-muted">Fitness Center</small>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/fitness_home" class="{% if request.path == '/fitness_home' %}active{% endif %}">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitness_Profile" class="{% if 'Profile' in request.path %}active{% endif %}">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#specialSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-certificate"></i> Specialisations
+                    </a>
+                    <ul class="collapse list-unstyled" id="specialSubmenu">
+                        <li><a href="/fitness_add_specialisation">Add New</a></li>
+                        <li><a href="/fit_view_specialisations">View All</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#servicesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-list"></i> Services
+                    </a>
+                    <ul class="collapse list-unstyled" id="servicesSubmenu">
+                        <li><a href="/fitness_add_Services">Add Service</a></li>
+                        <li><a href="/fitness_viewServices">View Services</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#facilitySubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-building"></i> Facilities
+                    </a>
+                    <ul class="collapse list-unstyled" id="facilitySubmenu">
+                        <li><a href="/fitness_add_facility">Add Facility</a></li>
+                        <li><a href="/fitness_view_facility">View Facilities</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#statusSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-clock"></i> Live Status
+                    </a>
+                    <ul class="collapse list-unstyled" id="statusSubmenu">
+                        <li><a href="/fit_addavailability">Update Status</a></li>
+                        <li><a href="/fitness_viewStatus">View Status</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#offersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-tags"></i> Offers
+                    </a>
+                    <ul class="collapse list-unstyled" id="offersSubmenu">
+                        <li><a href="/fitness_add_offers">Add Offer</a></li>
+                        <li><a href="/fitness_view_offers">View Offers</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/view_added_SLOT">
+                        <i class="fas fa-calendar-alt"></i> Manage Slots
+                    </a>
+                </li>
+                <li>
+                    <a href="#bookingSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-book"></i> Bookings
+                    </a>
+                    <ul class="collapse list-unstyled" id="bookingSubmenu">
+                        <li><a href="/fitness_view_appointments">New Requests</a></li>
+                        <li><a href="/fitness_view_approved">Approved</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/fitness_view_payments">
+                        <i class="fas fa-money-bill-wave"></i> Payments
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitness_changepassword">
+                        <i class="fas fa-key"></i> Password
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light glass-navbar">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="glass-btn btn-sm">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="ms-auto d-flex align-items-center">
+                        <span class="text-white me-3">Welcome, Trainer</span>
+                        <a href="/logoutss" class="glass-btn btn-sm text-danger" onclick="return confirm('Logout?');">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Block -->
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

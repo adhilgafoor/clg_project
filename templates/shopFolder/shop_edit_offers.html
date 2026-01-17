@@ -1,83 +1,59 @@
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 40px;">
-        <h1 style="color: #2d3748; font-size: 26px; margin-bottom: 30px; text-align: center; font-weight: 600;">Edit Offer</h1>
+{% extends 'shopFolder/base_shop.html' %}
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Offer</h3>
+                    <a href="/shop_view_offers" class="glass-btn btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i> Back
+                    </a>
+                </div>
 
-            <div style="margin-bottom: 20px;">
-                <label for="name" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Offer Name</label>
-                <input type="text" id="name" value="{{ data.Offername }}" name="Offername" placeholder="Enter offer name" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Offer Name</label>
+                        <input type="text" name="Offername" value="{{ data.Offername }}"
+                            class="glass-input form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Offer Price</label>
+                        <input type="number" name="price" value="{{ data.Amount }}" class="glass-input form-control"
+                            required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <label class="form-label">From Date</label>
+                            <input type="date" name="Fromdate" value="{{ data.Fromdate|date:'Y-m-d' }}"
+                                class="glass-input form-control text-white" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">To Date</label>
+                            <input type="date" name="todate" value="{{ data.Todate|date:'Y-m-d' }}"
+                                class="glass-input form-control text-white" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Details</label>
+                        <textarea name="Details" class="glass-input form-control" rows="3"
+                            required>{{ data.Details }}</textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="glass-btn w-100 bg-success border-0">
+                            <i class="fas fa-save me-2"></i> Update Offer
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="price" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Offer Price</label>
-                <input type="text" id="price" value="{{ data.Amount }}" name="price" placeholder="Enter offer price" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="fromdate" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">From Date</label>
-                <input type="date" id="fromdate" name="Fromdate" value="{{ data.Fromdate|date:'Y-m-d' }}" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; cursor: pointer; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="todate" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">To Date</label>
-                <input type="date" id="todate" name="todate" value="{{ data.Todate|date:'Y-m-d' }}" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; cursor: pointer; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="detail" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Details</label>
-                <input type="text" id="detail" value="{{ data.Details }}" name="Details" placeholder="Enter offer details" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-top: 25px;">
-                <button type="submit" style="width: 100%; padding: 12px; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">Update Offer</button>
-            </div>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 {% endblock %}
-
-
-{#{% extends 'shopFolder/shop_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Products</h1>#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <div>#}
-{#            <label for="name">Offer Name:</label>#}
-{#            <input type="text" id="name" value="{{ data.Offername }}" name="Offername" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="pr">Offer Price:</label>#}
-{#            <input type="text" id="price" value="{{ data.Amount }}" name="price" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label >Fromdate:</label>#}
-{#            <input type="date"  name="Fromdate" value="{{ data.Fromdate|date:'Y-m-d' }}" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label>Todate:</label>#}
-{#            <input type="date"  name="todate" value="{{ data.Todate|date:'Y-m-d' }}" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label>Details:</label>#}
-{#            <input type="text" id="detail" value="{{ data.Details }}" name="Details" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <button type="submit">Edit</button>#}
-{#        </div>#}
-{#    </form>#}
-{#</body>#}
-{#{% endblock %}#}

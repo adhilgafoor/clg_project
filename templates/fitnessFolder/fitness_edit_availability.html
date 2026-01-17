@@ -1,45 +1,60 @@
+{% extends 'fitnessFolder/base_fitness.html' %}
 
-{% extends 'fitnessFolder/main_home_page.html' %}
-{% block body %}
-<body>
-    <h1>Avilability Status</h1>
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Status</h3>
+                    <a href="/fitness_view_availabilitystatus" class="glass-btn btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i> Back
+                    </a>
+                </div>
 
-    <form method="POST">
-        {% csrf_token %}
+                <form method="POST">
+                    {% csrf_token %}
 
-         <div>
-            <label for="category">Service Name:</label>
-            <select name="service">
-                {% for i in gh %}
-                <option value="{{ i.id }}" {% if i.id == data.SERVICE_id %}selected{% endif %}>{{ i.Servicename }}</option>
-                {% endfor %}
-            </select>
+                    <div class="mb-3">
+                        <label class="form-label">Service Name</label>
+                        <select name="service" class="glass-input form-select" required>
+                            {% for i in gh %}
+                            <option value="{{ i.id }}" {% if i.id==data.SERVICE_id %}selected{% endif %}>{{
+                                i.Servicename }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="glass-input form-select" required>
+                            <option value="Open" {% if data.Status=="Open" %}selected{% endif %}>Open</option>
+                            <option value="Closed" {% if data.Status=="Closed" %}selected{% endif %}>Closed</option>
+                            <option value="24/7" {% if data.Status=="24/7" %}selected{% endif %}>24/7</option>
+                        </select>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <label class="form-label">From Time</label>
+                            <input type="time" name="ftime" value="{{ data.Fromtime }}" class="glass-input form-control"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">To Time</label>
+                            <input type="time" name="ttime" value="{{ data.Totime }}" class="glass-input form-control"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="glass-btn w-100 bg-success border-0">
+                            <i class="fas fa-save me-2"></i> Update Status
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-
-         <div>
-            <label for="category">Service Status:</label>
-            <select name="status">
-
-           <option value="Open" {% if data.Status == "Open" %}selected{% endif %}>Open</option>
-            <option value="Closed" {% if data.Status == "Closed" %}selected{% endif %}>Closed</option>
-            <option value="24/7" {% if data.Status == "24/7" %}selected{% endif %}>24/7</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="time">From time:</label>
-            <input type="time" value="{{ data.Fromtime }}" id="name" name="ftime" required>
-        </div>
-     <div>
-            <label for="ttime">To time:</label>
-            <input type="time" value="{{ data.Totime }}" id="name" name="ttime" required>
-        </div>
-
-
-        <div>
-            <button type="submit">Edit Status</button>
-        </div>
-    </form>
-</body>
+    </div>
+</div>
 {% endblock %}

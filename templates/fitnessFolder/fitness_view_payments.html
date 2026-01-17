@@ -1,49 +1,69 @@
+{% extends 'fitnessFolder/base_fitness.html' %}
 
-{% extends 'fitnessFolder/main_home_page.html' %}
-{% block body %}
-<body>
-    <h1>Services</h1>
-<form method="post">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Slno</th>
-                <th>Date</th>
-                <th>Service</th>
-                <th>FromTime</th>
-                <th>ToTime</th>
-                <th>UserDetails</th>
-                <th>Slot</th>
-                <th>SlotDate</th>
-                <th>SlotStatus</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in data %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ i.SLOT.Date }}</td>
-                <td>{{ i.SLOT.AVILABLE.SERVICE.Servicename }}</td>
-                <td>{{ i.SLOT.AVILABLE.Fromtime }}</td>
-                <td>{{ i.SLOT.AVILABLE.Totime }}</td>
-                <td>
-                    {{ i.USER.Name }}<br><br>
-                    {{ i.USER.Email }}<br><br>
-                    {{ i.USER.Phone }}<br><br>
+{% block content %}
+<div class="container-fluid">
+    <div class="card-glass">
+        <h3 class="mb-4"><i class="fas fa-history me-2"></i>Payment History / Bookings</h3>
 
-                </td>
-                <td>{{ i.SLOT.SlotNumber }}</td>
-                <td>{{ i.Date }}</td>
-                <td>{{ i.Status }}</td>
-                <td>
-                <a href="/fintness_approve_appointments/{{ i.id }}#ab">Payments </a><br><br>
-
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</form>
-</body>
+        <div class="table-responsive">
+            <table class="table text-white align-middle">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--glass-border);">
+                        <th>SL</th>
+                        <th>User</th>
+                        <th>Service Details</th>
+                        <th>Slot & Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <span class="fw-bold">{{ i.USER.Name }}</span>
+                                <small class="text-white-50">{{ i.USER.Phone }}</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <span class="text-primary fw-bold">{{ i.SLOT.AVILABLE.SERVICE.Servicename }}</span>
+                                <small>Date: {{ i.SLOT.Date }}</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <span class="badge bg-secondary mb-1 w-auto align-self-start">Slot #{{ i.SLOT.SlotNumber
+                                    }}</span>
+                                <small>{{ i.SLOT.AVILABLE.Fromtime }} - {{ i.SLOT.AVILABLE.Totime }}</small>
+                            </div>
+                        </td>
+                        <td>
+                            {% if i.Status == 'Completed' %}
+                            <span class="badge bg-success">Paid</span>
+                            {% elif i.Status == 'Pending' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            {% else %}
+                            <span class="badge bg-info">{{ i.Status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="/fintness_approve_appointments/{{ i.id }}#ab"
+                                class="glass-btn btn-sm bg-success border-0">
+                                Verify Payment
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">No payment records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

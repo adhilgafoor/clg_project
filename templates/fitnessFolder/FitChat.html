@@ -1,769 +1,157 @@
+{% extends 'fitnessFolder/base_fitness.html' %}
 
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-<link href="/static/chatstyle/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
-<script src="/static/chatstyle/bootstrap.min.js"></script>
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-<script src="/static/chatstyle/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html>
-	<head>
-		<style>
-			.clearfix:after {
-display: block;
-clear: both;
-content: "";
-}
-.clearfix:after {
-    visibility: hidden;
-    font-size: 0;
-    content: " ";
-    height:0
-}
-
-		</style>
-		<title>Chat</title>
-		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
-		<link rel="stylesheet" href="/static/chatstyle/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">-->
-		<link rel="stylesheet" href="/static/chatstyle/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-		<script src="/static/chatstyle/jquery.min.js"></script>
-		<!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">-->
-		<link rel="stylesheet" type="text/css" href="/static/chatstyle/jquery.mCustomScrollbar.min.css">
-		<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>-->
-		<script type="text/javascript" src="/static/chatstyle/jquery.mCustomScrollbar.min.js"></script>
-	</head>
-	<!--Coded With Love By Mutiullah Samim-->
-	<body>
-
-		<div class="container-fluid h-100">
-			<div class="row justify-content-center h-100">
-<!--				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">-->
-<!--					contacts_card<div class="card-header">-->
-<!--						<div class="input-group">-->
-<!--							<a href="/student" style="color: white">Go to Home</a>-->
-<!--							&lt;!&ndash;<input type="text" placeholder="Search..." name="" class="form-control search">&ndash;&gt;-->
-<!--							&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
-<!--								&lt;!&ndash;<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>&ndash;&gt;-->
-<!--							&lt;!&ndash;</div>&ndash;&gt;-->
-<!--						</div>-->
-<!--					</div>-->
-<!--                    <div id="tb1">-->
-<!--                        <input type="hidden" name="d" id="d" value="{{ toid }}" />-->
-<!--           <input type="hidden" name="textfield2" id="rece" />-->
-
-<!--                    </div>-->
-<!--					&lt;!&ndash;<div class="card-body contacts_body">&ndash;&gt;-->
-<!--						&lt;!&ndash;<ui class="contacts">&ndash;&gt;-->
-<!--						&lt;!&ndash;<li class="active">&ndash;&gt;-->
-<!--							&lt;!&ndash;<div class="d-flex bd-highlight">&ndash;&gt;-->
-<!--								<div class="img_cont">-->
-<!--									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">-->
-<!--									<span class="online_icon"></span>-->
-<!--								</div>-->
-<!--								&lt;!&ndash;<div class="user_info" id="tb1">&ndash;&gt;-->
-<!--									&lt;!&ndash;&lt;!&ndash;<span>Khalid</span>&ndash;&gt;&ndash;&gt;-->
-<!--									&lt;!&ndash;&lt;!&ndash;<p>Kalid is online</p>&ndash;&gt;&ndash;&gt;-->
-<!--                                   &lt;!&ndash;&lt;!&ndash;id="tb1" name="tb1"&ndash;&gt;&ndash;&gt;-->
-<!--								&lt;!&ndash;</div>&ndash;&gt;-->
-<!--							&lt;!&ndash;</div>&ndash;&gt;-->
-<!--						&lt;!&ndash;</li>&ndash;&gt;-->
-<!--                        &lt;!&ndash;</ui>&ndash;&gt;-->
-<!--					&lt;!&ndash;</div>&ndash;&gt;-->
-<!--					<div class="card-footer"></div>-->
-<!--				</div></div>-->
-
-				<div class="col-md-8 col-xl-6 chat">
-												<a href="/student" style="color: white">Go to Home</a>
-
-					<div class="card">
-						<div class="card-header msg_head">
-
-							<div class="d-flex bd-highlight">
-
-								<div class="img_cont" id="iiim" align="right" onclick="test()">
-									<div>
-
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
-
-
-<!--										<div class="chat-about"><h6 class="mb-0">Eliza</h6><small>I love to listen and help. 😍</small></div>-->
-
-
-									</div>
-<!--									<div class="chat-about"><h6 class="mb-0">Eliza</h6><small>I love to listen and help. 😍</small></div>-->
-										<span class="online_icon"></span></p></div>
-								<div class="user_info" id="nnnm" >
-									                        <input type="hidden" name="d" id="d" value="{{ toid }}" />
-
-	<p align="left">	<div ><h6 >Eliza</h6>
-									<small>I love to listen and help. 😍</small></div> <span ></span></p>
-									<!--<p>1767 Messages</p>-->
-								</div>
-								</div>
-
-								<!--<div class="video_cam">-->
-									<!--<span><i class="fas fa-video"></i></span>-->
-									<!--<span><i class="fas fa-phone"></i></span>-->
-								<!--</div>-->
-							</div>
-							<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-							<!--<div class="action_menu">-->
-								<!--<ul>-->
-									<!--<li><i class="fas fa-user-circle"></i> View profile</li>-->
-									<!--<li><i class="fas fa-users"></i> Add to close friends</li>-->
-									<!--<li><i class="fas fa-plus"></i> Add to group</li>-->
-									<!--<li><i class="fas fa-ban"></i> Block</li>-->
-								<!--</ul>-->
-							<!--</div>-->
-
-						<div class="card-body msg_card_body" >
-
-                            <div id="send1">
-
-                            </div>
-							<!--<div class="d-flex justify-content-start mb-4">-->
-								<!--<div class="img_cont_msg">-->
-									<!--<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">-->
-								<!--</div>-->
-								<!--<div class="msg_cotainer">-->
-									<!--Hi, how are you samim?-->
-									<!--<span class="msg_time">8:40 AM, Today</span>-->
-								<!--</div>-->
-							<!--</div>-->
-							<!--<div class="d-flex justify-content-end mb-4">-->
-								<!--<div class="msg_cotainer_send">-->
-									<!--Hi Khalid i am good tnx how about you?-->
-									<!--<span class="msg_time_send">8:55 AM, Today</span>-->
-								<!--</div>-->
-								<!--<div class="img_cont_msg">-->
-							<!--<img src="data:image/jpeg;base64,
-								<!--</div>-->
-							<!--</div>-->
-
+{% block content %}
+<div class="container-fluid h-100">
+	<div class="row h-100 justify-content-center">
+		<div class="col-md-8 chat-container" style="height: calc(100vh - 120px);">
+			<div class="card-glass h-100 d-flex flex-column p-0 overflow-hidden">
+				<!-- Chat Header -->
+				<div
+					class="p-3 border-bottom border-light border-opacity-10 d-flex align-items-center bg-dark bg-opacity-25">
+					<div class="position-relative me-3">
+						<img src="https://ui-avatars.com/api/?name=User&background=random"
+							class="rounded-circle border border-2 border-primary" width="50" height="50"
+							id="chatUserImg">
+						<span
+							class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle"></span>
 					</div>
-                        <div class="card-footer">
+					<div>
+						<h5 class="mb-0 fw-bold text-white" id="chatUserName">Chat</h5>
+						<small class="text-white-50">Online</small>
+					</div>
+				</div>
 
-							<div class="input-group">
-								<div class="input-group-append">
-									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-								</div>
-								<textarea name="" id="textfield"class="form-control type_msg" placeholder="Type your message..."></textarea>
-								<div class="input-group-append">
-									<!--<span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>-->
-                                    <input type="submit"class="input-group-text send_btn" value="send" id="button">
-								</div>
-							</div>
-						</div>
+				<!-- Chat Body -->
+				<div class="flex-grow-1 p-4 overflow-auto" id="msgBody" style="background: rgba(0,0,0,0.1);">
+					<div id="loadingChat" class="text-center text-white-50 mt-5">
+						<i class="fas fa-spinner fa-spin fa-2x"></i>
+						<p class="mt-2">Loading messages...</p>
+					</div>
+					<div id="messagesList">
+						<!-- Messages injected via JS -->
+					</div>
+				</div>
+
+				<!-- Chat Footer -->
+				<div class="p-3 bg-dark bg-opacity-25 border-top border-light border-opacity-10">
+					<div class="input-group">
+						<input type="text" id="chatInput" class="glass-input form-control border-end-0"
+							placeholder="Type your message..." onkeypress="if(event.keyCode==13) sendMessage()">
+						<button class="glass-btn bg-primary border-start-0" type="button" onclick="sendMessage()">
+							<i class="fas fa-paper-plane"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</body>
-</html>
+</div>
+
 <style>
-    	body,html{
-			height: 100%;
-			margin: 0;
-			background: #7F7FD5;
-	       background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-	        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-		}
-
-		.chat{
-			margin-top: auto;
-			margin-bottom: auto;
-		}
-		.card{
-			height: 500px;
-			border-radius: 15px !important;
-			background-color: rgba(0,0,0,0.4) !important;
-		}
-		.contacts_body{
-			padding:  0.75rem 0 !important;
-			overflow-y: auto;
-			white-space: nowrap;
-		}
-		.msg_card_body{
-			overflow-y: auto;
-		}
-		.card-header{
-			border-radius: 15px 15px 0 0 !important;
-			border-bottom: 0 !important;
-		}
-	 .card-footer{
-		border-radius: 0 0 15px 15px !important;
-			border-top: 0 !important;
-	}
-		.container{
-			align-content: center;
-		}
-		.search{
-			border-radius: 15px 0 0 15px !important;
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color:white !important;
-		}
-		.search:focus{
-		     box-shadow:none !important;
-           outline:0px !important;
-		}
-		.type_msg{
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color:white !important;
-			height: 60px !important;
-			overflow-y: auto;
-		}
-			.type_msg:focus{
-		     box-shadow:none !important;
-           outline:0px !important;
-		}
-		.attach_btn{
-	border-radius: 15px 0 0 15px !important;
-	background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.send_btn{
-	border-radius: 0 15px 15px 0 !important;
-	background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.search_btn{
-			border-radius: 0 15px 15px 0 !important;
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.contacts{
-			list-style: none;
-			padding: 0;
-		}
-		.contacts li{
-			width: 100% !important;
-			padding: 5px 10px;
-			margin-bottom: 15px !important;
-		}
-	.active{
-			background-color: rgba(0,0,0,0.3);
-	}
-		.user_img{
-			height: 70px;
-			width: 70px;
-			border:1.5px solid #f5f6fa;
-
-		}
-		.user_img_msg{
-			height: 40px;
-			width: 40px;
-			border:1.5px solid #f5f6fa;
-
-		}
-	.img_cont{
-			position: relative;
-			height: 70px;
-			width: 70px;
-	}
-	.img_cont_msg{
-			height: 40px;
-			width: 40px;
-	}
-	.online_icon{
-		position: absolute;
-		height: 15px;
-		width:15px;
-		background-color: #4cd137;
-		border-radius: 50%;
-		bottom: 0.2em;
-		right: 0.4em;
-		border:1.5px solid white;
-	}
-	.offline{
-		background-color: #c23616 !important;
-	}
-	.user_info{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 15px;
-	}
-	.user_info span{
-		font-size: 20px;
-		color: white;
-	}
-	.user_info p{
-	font-size: 10px;
-	color: rgba(255,255,255,0.6);
-	}
-	.video_cam{
-		margin-left: 50px;
-		margin-top: 5px;
-	}
-	.video_cam span{
-		color: white;
-		font-size: 20px;
-		cursor: pointer;
-		margin-right: 20px;
-	}
-	.msg_cotainer{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 10px;
-		border-radius: 25px;
-		background-color: #82ccdd;
-		padding: 10px;
-		position: relative;
-	}
-	.msg_cotainer_send{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-right: 10px;
-		border-radius: 25px;
-		background-color: #78e08f;
-		padding: 10px;
-		position: relative;
-	}
-	.msg_time{
-		position: absolute;
-		left: 0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
-	}
-	.msg_time_send{
-		position: absolute;
-		right:0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
-	}
-	.msg_head{
-		position: relative;
-	}
-	#action_menu_btn{
-		position: absolute;
-		right: 10px;
-		top: 10px;
-		color: white;
-		cursor: pointer;
-		font-size: 20px;
-	}
-	.action_menu{
-		z-index: 1;
-		position: absolute;
-		padding: 15px 0;
-		background-color: rgba(0,0,0,0.5);
-		color: white;
-		border-radius: 15px;
-		top: 30px;
-		right: 15px;
-		display: none;
-	}
-	.action_menu ul{
-		list-style: none;
-		padding: 0;
-	margin: 0;
-	}
-	.action_menu ul li{
-		width: 100%;
+	/* Chat Bubbles */
+	.msg-bubble {
+		max-width: 75%;
 		padding: 10px 15px;
-		margin-bottom: 5px;
+		border-radius: 15px;
+		margin-bottom: 15px;
+		position: relative;
+		word-wrap: break-word;
 	}
-	.action_menu ul li i{
-		padding-right: 10px;
 
+	.msg-sent {
+		background: linear-gradient(135deg, var(--glass-primary), #6366f1);
+		color: white;
+		align-self: flex-end;
+		border-bottom-right-radius: 2px;
+		margin-left: auto;
 	}
-	.action_menu ul li:hover{
-		cursor: pointer;
-		background-color: rgba(0,0,0,0.2);
+
+	.msg-received {
+		background: rgba(255, 255, 255, 0.1);
+		color: white;
+		align-self: flex-start;
+		border-bottom-left-radius: 2px;
+		margin-right: auto;
+		border: 1px solid rgba(255, 255, 255, 0.05);
 	}
-	@media(max-width: 576px){
-	.contacts_card{
-		margin-bottom: 15px !important;
-	}
+
+	#messagesList {
+		display: flex;
+		flex-direction: column;
 	}
 </style>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Load chat messages from server
-    function loadChat() {
-        $.ajax({
-            url: "/fit_chat_view/",
-            type: "GET",
-            dataType: "json",
-            success: function(dat) {
-                $("#send1").empty();
-                var data = dat.data;
-                var toId = dat.toid;
+	// Config
+	const CHAT_VIEW_URL = "/fit_chat_view/";
+	const CHAT_SEND_URL = "/fit_chat_send/"; // + msg
 
-                for (var i=0; i<data.length; i++) {
-                    var message = data[i].message;
-                    var from = data[i].from;
+	function loadChat() {
+		$.ajax({
+			url: CHAT_VIEW_URL,
+			type: "GET",
+			dataType: "json",
+			success: function (response) {
+				$("#loadingChat").hide();
+				const container = $("#messagesList");
+				container.empty();
 
-                    if (from != toId) {
-                        $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>" + message + "</div></div>");
-                    } else {
-                        $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class='msg_cotainer'>" + message + "</div></div>");
-                    }
-                }
+				const data = response.data;
+				const toId = response.toid; // user_lid
 
-                // Scroll to bottom of chat
-                var msgBody = document.querySelector("#send1");
-                msgBody.scrollTop = msgBody.scrollHeight;
-            }
-        });
-    }
+				// Update header info if available
+				if (response.name) $("#chatUserName").text(response.name);
+				if (response.photo) $("#chatUserImg").attr("src", response.photo);
 
-    // Send new chat message to server
-    $("#button").click(function() {
-        var msg = $("#textfield").val();
-        if (msg.trim() === "") return;
+				data.forEach(msg => {
+					const isSent = (msg.from != toId);
+					// Note: Logic from original file: if (from != toId) -> sent? Wait.
+					// Original: if (from != toId) -> justify-content-end (Sent)
+					// Let's assume standard logic: 'from' is sender ID. If sender != myID, it's received.
+					// But here 'toid' seems to be the OTHER person's ID? 
+					// Re-reading original: "var user_lid=dat["toid"]; ... if (type != user_lid) ... justify-content-end"
+					// This implies if sender is NOT the 'toid' (the partner), then it is ME (Sent).
 
-        $.ajax({
-            url: "/fit_chat_send/" + encodeURIComponent(msg),
-            type: "GET",
-            dataType: "json",
-            success: function(dat) {
-                $("#textfield").val("");
-                loadChat();  // Reload messages after sending new one
-            }
-        });
-    });
+					const bubbleClass = isSent ? 'msg-sent' : 'msg-received';
+					const html = `<div class="msg-bubble ${bubbleClass}">${msg.message}</div>`;
+					container.append(html);
+				});
 
-    // Auto refresh chat every second
-    function repeatEverySecond() {
-        setInterval(loadChat, 1000);
-    }
+				// Auto Scroll
+				const body = document.getElementById("msgBody");
+				body.scrollTop = body.scrollHeight;
+			},
+			error: function (err) {
+				console.error("Chat load error", err);
+			}
+		});
+	}
 
-    $(document).ready(function() {
-        loadChat();
-        repeatEverySecond();
-    });
+	function sendMessage() {
+		const input = $("#chatInput");
+		const msg = input.val().trim();
+		if (!msg) return;
+
+		// Optimistic UI update (optional, but good for UX)
+		// $("#messagesList").append(`<div class="msg-bubble msg-sent">${msg}</div>`);
+		// $("#msgBody").scrollTop($("#msgBody")[0].scrollHeight);
+
+		$.ajax({
+			url: CHAT_SEND_URL + encodeURIComponent(msg),
+			type: "GET",
+			dataType: "json",
+			success: function (response) {
+				input.val("");
+				loadChat(); // Refresh to sync
+			}
+		});
+	}
+
+	// Auto-refresh
+	$(document).ready(function () {
+		loadChat();
+		setInterval(loadChat, 2000); // 2 seconds poll
+	});
 </script>
-
-{#<script>#}
-{#    	$(document).ready(function(){#}
-{#//    	    alert("hoi");#}
-{#//$('#action_menu_btn').click(function(){#}
-{#//	$('.action_menu').toggle();#}
-{#//	$('.iim').click;#}
-{#//});#}
-{#repeatEverySecond();#}
-{#$.ajax({#}
-{#            url: "/fit_chat_view/",#}
-{#            type: "GET",#}
-{#            data: {#}
-{##}
-{##}
-{#            },#}
-{#            contentType: "application/json;charset=utf-8",#}
-{#            dataType: "json",#}
-{#            success: function(dat) {#}
-{##}
-{##}
-{##}
-{##}
-{#                  var data=dat["data"];#}
-{#                 var name=dat["name"];#}
-{#                 var photo=dat["photo"];#}
-{#                 var user_lid=dat["toid"];#}
-{# $("#iiim").text("")#}
-{#                $("#nnnm").text("")#}
-{#                $("#iiim").append("<img src='"+photo+"' class='rounded-circle user_img'>")#}
-{#                $("#nnnm").append("<span>Chat with "+name+"</span>")#}
-{##}
-{#             //////////////////#}
-{##}
-{#                $("#send1").text("");#}
-{#				var len=data.length;#}
-{#				for(var i=0;i<len;i++) {#}
-{#                    var rid = data[i]['id'];#}
-{#                    var type = data[i]['from']#}
-{#                    var mesg = data[i]['message'];#}
-{#                    var sendid = data[i]['date'];#}
-{##}
-{#                    if (type !=user_lid ) {#}
-{#//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='right'><div  class='container darker'><div>" + mesg + "</div></td></tr></table></div>")#}
-{##}
-{#                    $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>"+mesg+"</div></div></div>")#}
-{#                    }#}
-{#                    else  {#}
-{##}
-{#//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='left'><div><div class='container darker'>" + mesg + "</div></td></tr></table></div>")#}
-{##}
-{#                    $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class=img_cont_msg'></div><div class='msg_cotainer'>"+mesg+"</div></div>")#}
-{##}
-{##}
-{#                    }#}
-{##}
-{#                }#}
-{##}
-{##}
-{#                /////////////////////////////////#}
-{##}
-{#            },#}
-{#            error: function(ts) {#}
-{#//{#                alert(ts);#}
-{#            }#}
-{#        });#}
-{##}
-{#	});#}
-{#</script>#}
-{##}
-{#<script src="/static/jquery.js"></script>#}
-{#<script>#}
-{##}
-{#    function test() {#}
-{##}
-{#           $("#button").show();#}
-{#        $("#textfield").show();#}
-{##}
-{##}
-{#$.ajax({#}
-{#            url: "/fit_chat_view/",#}
-{#            type: "GET",#}
-{#            data: {#}
-{##}
-{##}
-{#            },#}
-{#            contentType: "application/json;charset=utf-8",#}
-{#            dataType: "json",#}
-{#            success: function(dat) {#}
-{##}
-{##}
-{##}
-{#                 var data=dat["data"];#}
-{#                 var name=dat["name"];var photo=dat["photo"];#}
-{#                 var user_lid=dat["toid"];#}
-{#                   $("#iiim").text("")#}
-{#                $("#nnnm").text("")#}
-{#                $("#iiim").append("<img src="+photo+" class='rounded-circle user_img'>")#}
-{#                $("#nnnm").append("<span>Chat with "+name+"</span>")#}
-{##}
-{#             //////////////////#}
-{##}
-{#                $("#send1").text("");#}
-{#				var len=data.length;#}
-{#				for(var i=0;i<len;i++) {#}
-{#                    var rid = data[i]['id'];#}
-{#                    var type = data[i]['from']#}
-{#                    var mesg = data[i]['message'];#}
-{#                    var sendid = data[i]['date'];#}
-{##}
-{#                    if (type !=user_lid ) {#}
-{#//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='right'><div  class='container darker'><div>" + mesg + "</div></td></tr></table></div>")#}
-{#                    $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>"+mesg+"</div></div></div>")#}
-{##}
-{#                    }#}
-{#                    else  {#}
-{##}
-{#                    $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class=img_cont_msg'></div><div class='msg_cotainer'>"+mesg+"</div></div>")#}
-{#//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='left'><div><div class='container darker'>" + mesg + "</div></td></tr></table></div>")#}
-{##}
-{##}
-{##}
-{#                    }#}
-{##}
-{#                }#}
-{##}
-{##}
-{#                /////////////////////////////////#}
-{##}
-{#            },#}
-{#            error: function(ts) {#}
-{#//{#                alert(ts);#}
-{#            }#}
-{#        });#}
-{##}
-{##}
-{#    }#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#		$("#button").click(function()#}
-{#		{#}
-{##}
-{#			var msg=$("#textfield").val();#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#  $.ajax({#}
-{#            url: "/chat_app/send_chat/"+msg+"/"+{{ toid }},#}
-{#            url: "/fit_chat_send/"+msg,#}
-{#            type: "GET",#}
-{#            data: {#}
-{##}
-{##}
-{#            },#}
-{#            contentType: "application/json;charset=utf-8",#}
-{#            dataType: "json",#}
-{#            success: function(dat) {#}
-{##}
-{##}
-{#                $("#textfield").val("");#}
-{##}
-{#            },#}
-{#            error: function(ts) {#}
-{#			}#}
-{##}
-{#        });#}
-{##}
-{##}
-{#		});#}
-{##}
-{##}
-{##}
-{##}
-{#</script>#}
-{#<script>#}
-{##}
-{##}
-{#function repeatEverySecond() {#}
-{##}
-{#//{#    alert('hiii');#}
-{#  intervalID = setInterval(test, 1000);#}
-{#}#}
-{##}
-{#</script>#}
-
-
-
-
-{##}
-{##}
-{#<!DOCTYPE html>#}
-{#<html>#}
-{#<head>#}
-{#    <link href="/static/chatstyle/bootstrap.min.css" rel="stylesheet">#}
-{#    <link href="/static/chatstyle/all.css" rel="stylesheet">#}
-{#    <link href="/static/chatstyle/jquery.mCustomScrollbar.min.css" rel="stylesheet">#}
-{##}
-{#    <script src="/static/chatstyle/jquery.min.js"></script>#}
-{#    <script src="/static/chatstyle/bootstrap.min.js"></script>#}
-{#    <script src="/static/chatstyle/jquery.mCustomScrollbar.min.js"></script>#}
-{##}
-{#    <style>#}
-{#        /* Your existing CSS styles here */#}
-{#    </style>#}
-{#</head>#}
-{#<body>#}
-{##}
-{#<div class="container-fluid h-100">#}
-{#    <div class="row justify-content-center h-100">#}
-{#        <div class="col-md-8 col-xl-6 chat">#}
-{#            <a href="/student" style="color: white">Go to Home</a>#}
-{#            <div class="card">#}
-{#                <div class="card-header msg_head">#}
-{#                    <div class="d-flex bd-highlight">#}
-{#                        <div class="img_cont" id="iiim" align="right" onclick="loadChat()">#}
-{#                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">#}
-{#                            <span class="online_icon"></span>#}
-{#                        </div>#}
-{#                        <div class="user_info" id="nnnm">#}
-{#                            <p align="left">#}
-{#                                <div>#}
-{#                                    <h6>Chat Partner</h6>#}
-{#                                    <small>Online</small>#}
-{#                                </div>#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="card-body msg_card_body" id="send1"> <!-- Messages container -->#}
-{##}
-{#                </div>#}
-{##}
-{#                <div class="card-footer">#}
-{#                    <div class="input-group">#}
-{#                        <div class="input-group-append">#}
-{#                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>#}
-{#                        </div>#}
-{#                        <textarea id="textfield" class="form-control type_msg" placeholder="Type your message..."></textarea>#}
-{#                        <div class="input-group-append">#}
-{#                            <input type="submit" class="input-group-text send_btn" value="Send" id="button">#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{#<script>#}
-{#    // Load chat messages from server#}
-{#    function loadChat() {#}
-{#        $.ajax({#}
-{#            url: "/fit_chat_view/",#}
-{#            type: "GET",#}
-{#            dataType: "json",#}
-{#            success: function(dat) {#}
-{#                $("#send1").empty();#}
-{#                var data = dat.data;#}
-{#                var toId = dat.toid;#}
-{##}
-{#                for (var i=0; i<data.length; i++) {#}
-{#                    var message = data[i].message;#}
-{#                    var from = data[i].from;#}
-{##}
-{#                    if (from != toId) {#}
-{#                        $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>" + message + "</div></div>");#}
-{#                    } else {#}
-{#                        $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class='msg_cotainer'>" + message + "</div></div>");#}
-{#                    }#}
-{#                }#}
-{##}
-{#                // Scroll to bottom of chat#}
-{#                var msgBody = document.querySelector("#send1");#}
-{#                msgBody.scrollTop = msgBody.scrollHeight;#}
-{#            }#}
-{#        });#}
-{#    }#}
-{##}
-{#    // Send new chat message to server#}
-{#    $("#button").click(function() {#}
-{#        var msg = $("#textfield").val();#}
-{#        if (msg.trim() === "") return;#}
-{##}
-{#        $.ajax({#}
-{#            url: "/fit_chat_send/" + encodeURIComponent(msg),#}
-{#            type: "GET",#}
-{#            dataType: "json",#}
-{#            success: function(dat) {#}
-{#                $("#textfield").val("");#}
-{#                loadChat();  // Reload messages after sending new one#}
-{#            }#}
-{#        });#}
-{#    });#}
-{##}
-{#    // Auto refresh chat every second#}
-{#    function repeatEverySecond() {#}
-{#        setInterval(loadChat, 1000);#}
-{#    }#}
-{##}
-{#    $(document).ready(function() {#}
-{#        loadChat();#}
-{#        repeatEverySecond();#}
-{#    });#}
-{#</script>#}
-{##}
-{#</body>#}
-{#</html>#}
-{##}
+{% endblock %}

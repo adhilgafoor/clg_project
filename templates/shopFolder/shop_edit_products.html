@@ -1,85 +1,65 @@
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 40px;">
-        <h1 style="color: #2d3748; font-size: 26px; margin-bottom: 30px; text-align: center; font-weight: 600;">Edit Product</h1>
+{% extends 'shopFolder/base_shop.html' %}
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <div style="margin-bottom: 20px;">
-                <label for="name" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Product Name</label>
-                <input type="text" id="name" value="{{ data.Product }}" name="pname" placeholder="Enter product name" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="price" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Product Price</label>
-                <input type="text" id="price" value="{{ data.Price }}" name="price" placeholder="Enter price" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="type" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Category</label>
-                <select id="type" name="cat" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; cursor: pointer; box-sizing: border-box;">
-                    {% for i in gh %}
-                    <option value="{{ i.id }}" {% if i.id == data.CATEGORY_id %}selected{% endif %}>{{ i.Categoryname }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="photo" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Product Photo</label>
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ data.Photo.url }}" height="100" width="100" style="border-radius: 6px; border: 1px solid #d1d5db; object-fit: cover;">
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Product</h3>
+                    <a href="/shop_view_products" class="glass-btn btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i> Back
+                    </a>
                 </div>
-                <input type="file" id="photo" name="photo" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; box-sizing: border-box;">
-            </div>
 
-            <div style="margin-top: 25px;">
-                <button type="submit" style="width: 100%; padding: 12px; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">Update Product</button>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="text-center mb-4">
+                        <img src="{{ data.Photo.url }}" class="rounded border border-2 border-white shadow mb-2"
+                            style="width: 100px; height: 100px; object-fit: cover;">
+                        <br>
+                        <small class="text-muted">Current Image</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" name="pname" value="{{ data.Product }}" class="glass-input form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent border-end-0 text-white">₹</span>
+                            <input type="number" name="price" value="{{ data.Price }}"
+                                class="glass-input form-control border-start-0 ps-0" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select name="cat" class="glass-input form-select" required>
+                            {% for i in cat %}
+                            <option value="{{ i.id }}" {% if i.id==data.CATEGORY_id %}selected{% endif %}
+                                class="text-dark">{{ i.Categoryname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Update Photo (Optional)</label>
+                        <input type="file" name="photo" class="glass-input form-control" accept="image/*">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="glass-btn w-100 bg-success border-0">
+                            <i class="fas fa-save me-2"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 {% endblock %}
-
-{#{% extends 'shopFolder/shop_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Products</h1>#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <div>#}
-{#            <label for="name">Product Name:</label>#}
-{#            <input type="text" id="name" value="{{ data.Product }}" name="pname" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="pr">Product Price:</label>#}
-{#            <input type="text" id="price" value="{{ data.Price }}" name="price" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label for="type">Category:</label>#}
-{#            <select id="type" name="cat" required>#}
-{#                {% for i in gh %}#}
-{#                <option value="{{ i.id }}" {% if i.id == data.CATEGORY_id %}selected{% endif %}>{{ i.Categoryname }}</option>#}
-{#                {% endfor %}#}
-{#            </select>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="photo">Photo:</label>#}
-{#            <img src="{{ data.Photo.url }}" height="100" width="100">#}
-{#            <input type="file" id="photo" name="photo" >#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <button type="submit">Add</button>#}
-{#        </div>#}
-{#    </form>#}
-{#</body>#}
-{#</html>#}
-{#{% endblock %}#}

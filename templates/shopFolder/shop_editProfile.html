@@ -1,144 +1,75 @@
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 40px;">
-        <h1 style="color: #2d3748; font-size: 26px; margin-bottom: 30px; text-align: center; font-weight: 600;">Edit Business Account</h1>
+{% extends 'shopFolder/base_shop.html' %}
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <div style="margin-bottom: 20px;">
-                <label for="name" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Name</label>
-                <input type="text" id="name" value="{{ data.Name }}" name="name" placeholder="Enter name" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="email" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Email</label>
-                <input type="email" id="email" value="{{ data.Email }}" name="email" placeholder="Enter email" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="phone" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Phone</label>
-                <input type="tel" id="phone" name="phone" value="{{ data.Phone }}" placeholder="Enter phone number" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="place" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Place</label>
-                <input type="text" id="place" name="place" value="{{ data.Place }}" placeholder="Enter place" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="dict" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">District</label>
-                <input type="text" id="dict" name="dict" value="{{ data.District }}" placeholder="Enter district" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="pin" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">PIN Code</label>
-                <input type="text" id="pin" name="pin" value="{{ data.Pin }}" placeholder="Enter PIN code" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="lat" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Latitude</label>
-                <input type="text" id="lat" value="{{ data.latitude }}" name="lat" placeholder="Enter latitude" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="longii" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Longitude</label>
-                <input type="text" id="longii" value="{{ data.longitude }}" name="longii" placeholder="Enter longitude" required style="width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; color: #2d3748; box-sizing: border-box;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label for="proof" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Proof Document</label>
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ data.Proof.url }}" height="100" width="100" style="border-radius: 6px; border: 1px solid #d1d5db; object-fit: cover;">
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-glass">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="mb-0"><i class="fas fa-user-edit me-2"></i>Edit Shop Profile</h3>
+                    <a href="/shop_viewProfile" class="glass-btn btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i> Back
+                    </a>
                 </div>
-                <input type="file" id="proof" name="proof" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; box-sizing: border-box;">
-            </div>
 
-            <div style="margin-bottom: 20px;">
-                <label for="photo" style="display: block; color: #4a5568; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Photo</label>
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ data.Photo.url }}" height="100" width="100" style="border-radius: 6px; border: 1px solid #d1d5db; object-fit: cover;">
-                </div>
-                <input type="file" id="photo" name="photo" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; box-sizing: border-box;">
-            </div>
+                <form action="/shop_update_profile_post" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            <div style="margin-top: 25px;">
-                <button type="submit" style="width: 100%; padding: 12px; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer;">Update Account</button>
+                    <div class="text-center mb-4">
+                        <div class="position-relative d-inline-block">
+                            {% if data.photo %}
+                            <img src="{{ data.photo.url }}" class="rounded-circle border border-3 border-white shadow"
+                                style="width: 120px; height: 120px; object-fit: cover;">
+                            {% else %}
+                            <img src="/static/hometemp/img/user.jpg"
+                                class="rounded-circle border border-3 border-white shadow"
+                                style="width: 120px; height: 120px; object-fit: cover;">
+                            {% endif %}
+                            <label for="profile_pic"
+                                class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2 shadow"
+                                style="cursor: pointer;">
+                                <i class="fas fa-camera"></i>
+                                <input type="file" id="profile_pic" name="image" class="d-none">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Shop Name</label>
+                            <input type="text" name="name" value="{{ data.Name }}" class="glass-input form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" name="email" value="{{ data.Email }}" class="glass-input form-control"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" name="phone" value="{{ data.Phone }}" class="glass-input form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Place</label>
+                            <input type="text" name="place" value="{{ data.Place }}" class="glass-input form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">District</label>
+                            <input type="text" name="post" value="{{ data.Post }}" class="glass-input form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">PIN Code</label>
+                            <input type="text" name="pin" value="{{ data.Pin }}" class="glass-input form-control">
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="glass-btn w-100 bg-success border-0">
+                                <i class="fas fa-save me-2"></i> Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 {% endblock %}
-
-
-
-{#{% extends 'shopFolder/shop_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Business Account Registration</h1>#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <div>#}
-{#            <label for="name">Name:</label>#}
-{#            <input type="text" id="name" value="{{ data.Name }}" name="name" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="email">Email:</label>#}
-{#            <input type="email" id="email" value="{{ data.Email }}" name="email" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="phone">Phone:</label>#}
-{#            <input type="tel" id="phone" name="phone" value="{{ data.Phone }}" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="place">Place:</label>#}
-{#            <input type="text" id="place" name="place" value="{{ data.Place }}" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="dict">District:</label>#}
-{#            <input type="text" id="dict" name="dict" value="{{ data.District }}" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="pin">PIN Code:</label>#}
-{#            <input type="text" id="pin" name="pin" value="{{ data.Pin }}" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label for="lat">Latitude:</label>#}
-{#            <input type="text" id="lat" value="{{ data.latitude }}" name="lat" required>#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="longii">Longitude:</label>#}
-{#            <input type="text" id="longii" value="{{ data.longitude }}" name="longii" required>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div>#}
-{#            <label for="proof">Proof Document:</label>#}
-{#            <img src="{{ data.Proof.url }}" height="100" width="100">#}
-{##}
-{#            <input type="file" id="proof"  name="proof">#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <label for="photo">Photo:</label>#}
-{#            <img src="{{ data.Photo.url }}" height="100" width="100">#}
-{#            <input type="file" id="photo"  name="photo">#}
-{#        </div>#}
-{##}
-{#        <div>#}
-{#            <button type="submit">Edit</button>#}
-{#        </div>#}
-{#    </form>#}
-{#</body>#}
-{#</html>#}

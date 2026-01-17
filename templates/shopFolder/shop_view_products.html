@@ -1,117 +1,87 @@
-{#{% extends 'shopFolder/shop_home.html' %}#}
-{#{% block body %}#}
-{#<body>#}
-{#    <h1>Services</h1>#}
-{#<form method="post">#}
-{#    <table border="1">#}
-{#        <thead>#}
-{#            <tr>#}
-{#                <th>SLNO</th>#}
-{#                <th>Photo</th>#}
-{#                <th>Product</th>#}
-{#                <th>Price</th>#}
-{#                <th>CategoryName</th>#}
-{#                <th>Actions</th>#}
-{#            </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#            {% for i in data %}#}
-{#            <tr>#}
-{#               <td>{{ forloop.counter }}</td>#}
-{##}
-{#                <td>#}
-{#                    <img src=" {{ i.Photo.url }}" height="100" width="100">#}
-{#                </td>#}
-{#                <td>{{ i.Product }}</td>#}
-{#                <td>{{ i.Price }}</td>#}
-{#                <td>{{ i.CATEGORY.Categoryname }}</td>#}
-{#                <td>#}
-{#                <a href="/shop_edit_products/{{ i.id }}">Edit Product</a><br><br>#}
-{#                <a href="/shop_delete_products/{{ i.id }}">Delete Product</a><br><br>#}
-{#                <a href="/shop_add_offers/{{ i.id }}">Add Offers</a><br><br>#}
-{#                <a href="/shop_view_productreview/{{ i.id }}">Review</a>#}
-{##}
-{#                </td>#}
-{#            </tr>#}
-{#            {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
-{#</form>#}
-{#</body>#}
-{#</html>#}
-{#{% endblock %}#}
-{% extends 'shopFolder/shop_home.html' %}
-{% block body %}
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px 20px; margin: 0;">
-    <div style="max-width: 1400px; margin: 0 auto;">
-        <h1 style="color: #2d3748; font-size: 28px; margin-bottom: 30px; text-align: center; font-weight: 600;">Products Management</h1>
+{% extends 'shopFolder/base_shop.html' %}
 
-        <!-- Search Bar -->
-        <div style="margin-bottom: 20px;">
-            <input type="text" id="searchInput" placeholder="Search by Product or Category..." style="width: 100%; max-width: 400px; padding: 10px; font-size: 14px; border: 1px solid #e5e7eb; border-radius: 4px; outline: none;" onkeyup="searchTable()">
+{% block content %}
+<div class="container-fluid">
+    <div class="card-glass">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0"><i class="fas fa-box-open me-2"></i>Product Inventory</h3>
+            <a href="/shop_add_products" class="glass-btn bg-success border-0">
+                <i class="fas fa-plus me-2"></i> Add New
+            </a>
         </div>
 
-        <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
-            <form method="post">
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                        <thead>
-                            <tr style="background-color: #4f46e5; color: white;">
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">SLNO</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Photo</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Product</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Price</th>
-                                <th style="padding: 14px 12px; text-align: left; font-weight: 600; white-space: nowrap;">Category Name</th>
-                                <th style="padding: 14px 12px; text-align: center; font-weight: 600; white-space: nowrap;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsTable">
-                            {% for i in data %}
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 12px; color: #374151;">{{ forloop.counter }}</td>
-                                <td style="padding: 12px;">
-                                    <img src="{{ i.Photo.url }}" height="60" width="60" style="border-radius: 6px; object-fit: cover; border: 1px solid #e5e7eb;">
-                                </td>
-                                <td style="padding: 12px; color: #374151;">{{ i.Product }}</td>
-                                <td style="padding: 12px; color: #10b981; font-weight: 600; white-space: nowrap;">₹{{ i.Price }}</td>
-                                <td style="padding: 12px; color: #374151;">{{ i.CATEGORY.Categoryname }}</td>
-                                <td style="padding: 12px; text-align: center;">
-                                    <a href="/shop_edit_products/{{ i.id }}#ab" style="display: inline-block; padding: 6px 12px; background-color: #4f46e5; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Edit Product</a><br>
-                                    <a href="/shop_delete_products/{{ i.id }}#ab" style="display: inline-block; padding: 6px 12px; background-color: #ef4444; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Delete Product</a><br>
-                                    <a href="/shop_add_offers/{{ i.id }}#ab" style="display: inline-block; padding: 6px 12px; background-color: #10b981; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Add Offers</a><br>
-                                    <a href="/shop_view_productreview/{{ i.id }}#ab" style="display: inline-block; padding: 6px 12px; background-color: #6b7280; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; margin: 2px;">Review</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+        <!-- Search -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" id="searchInput" class="glass-input form-control"
+                    placeholder="Search product or category..." onkeyup="searchTable()">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--glass-border);">
+                        <th>SL</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTable">
+                    {% for i in data %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td class="align-middle">{{ forloop.counter }}</td>
+                        <td class="align-middle">
+                            <img src="{{ i.Photo.url }}" class="rounded border border-secondary"
+                                style="width: 50px; height: 50px; object-fit: cover;">
+                        </td>
+                        <td class="align-middle fw-bold">{{ i.Product }}</td>
+                        <td class="align-middle text-success fw-bold">₹{{ i.Price }}</td>
+                        <td class="align-middle"><span class="badge bg-info text-dark">{{ i.CATEGORY.Categoryname
+                                }}</span></td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group" role="group">
+                                <a href="/shop_edit_products/{{ i.id }}" class="glass-btn btn-sm bg-primary border-0"
+                                    title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="/shop_add_offers/{{ i.id }}"
+                                    class="glass-btn btn-sm bg-warning text-dark border-0" title="Offers">
+                                    <i class="fas fa-tags"></i>
+                                </a>
+                                <a href="/shop_view_productreview/{{ i.id }}" class="glass-btn btn-sm bg-info border-0"
+                                    title="Reviews">
+                                    <i class="fas fa-star"></i>
+                                </a>
+                                <a href="/shop_delete_products/{{ i.id }}" class="glass-btn btn-sm bg-danger border-0"
+                                    title="Delete" onclick="return confirm('Delete this product?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">No products found in inventory.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <script>
-        function searchTable() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const table = document.getElementById('productsTable');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let match = false;
-
-                // Search in Product (index 2) and Category Name (index 4)
-                if (cells[2] && cells[4]) {
-                    const productText = cells[2].textContent.toLowerCase();
-                    const categoryText = cells[4].textContent.toLowerCase();
-                    if (productText.includes(input) || categoryText.includes(input)) {
-                        match = true;
-                    }
-                }
-
-                rows[i].style.display = match ? '' : 'none';
-            }
-        }
-    </script>
-</body>
+<script>
+    function searchTable() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#productsTable tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    }
+</script>
 {% endblock %}
