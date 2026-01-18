@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin_approve_buissness/<id>', views.admin_approve_buissness),
     path('admin_reject_buissness/<id>', views.admin_reject_buissness),
     path('admin_approved_buissness', views.admin_approved_buissness),
+    path('admin_delete_buissness/<id>', views.admin_delete_buissness),
     path('admin_add_category', views.admin_add_category),
     path('admin_view_category', views.admin_view_category),
     path('admin_view_complaints_search', views.admin_view_complaints_search),

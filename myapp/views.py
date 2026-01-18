@@ -119,6 +119,20 @@ def admin_approved_buissness(request):
 
 @login_required(login_url='/loginindex')
 @never_cache
+def admin_delete_buissness(request, id):
+    try:
+        account = BussinessAccount.objects.get(id=id)
+        user = account.USER
+        account.delete()
+        if user:
+            user.delete()
+        messages.success(request, 'Business account deleted successfully.')
+    except BussinessAccount.DoesNotExist:
+        messages.error(request, 'Account not found.')
+    return redirect('/admin_approved_buissness')
+
+@login_required(login_url='/loginindex')
+@never_cache
 def admin_add_category(request):
     if request.method == 'POST':
         name = request.POST['name']

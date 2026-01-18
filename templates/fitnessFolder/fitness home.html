@@ -2,90 +2,268 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12 mb-4">
-      <h2 class="text-white fw-bold">Fitness Center Dashboard</h2>
-      <p class="text-muted">Manage your center, slots, and bookings.</p>
+  <!-- Welcome Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card-glass"
+        style="background: linear-gradient(135deg, rgba(233, 69, 96, 0.3), rgba(255, 107, 107, 0.2));">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h2 class="fw-bold mb-1">
+              <i class="fas fa-fire text-warning me-2"></i>Welcome to GYM PRO
+            </h2>
+            <p class="mb-0 opacity-75">Your complete gym management dashboard</p>
+          </div>
+          <div class="d-none d-md-block">
+            <i class="fas fa-dumbbell fa-4x opacity-25"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Stats Cards -->
+  <!-- Stats Overview -->
   <div class="row g-4 mb-4">
-    <div class="col-md-3">
-      <div class="card-glass d-flex align-items-center justify-content-between">
-        <div>
-          <h5 class="mb-0 text-muted">Active Bookings</h5>
-          <h2 class="fw-bold mb-0 mt-2">8</h2>
+    <div class="col-lg-3 col-md-6">
+      <div class="card-glass">
+        <div class="d-flex align-items-center">
+          <div class="stat-icon icon-primary me-3">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <p class="mb-0 opacity-75 small">Active Members</p>
+            <h3 class="fw-bold mb-0">156</h3>
+          </div>
         </div>
-        <i class="fas fa-calendar-check fa-3x text-success op-5"></i>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card-glass d-flex align-items-center justify-content-between">
-        <div>
-          <h5 class="mb-0 text-muted">Total Slots</h5>
-          <h2 class="fw-bold mb-0 mt-2">24</h2>
+    <div class="col-lg-3 col-md-6">
+      <div class="card-glass">
+        <div class="d-flex align-items-center">
+          <div class="stat-icon icon-success me-3">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div>
+            <p class="mb-0 opacity-75 small">Today's Bookings</p>
+            <h3 class="fw-bold mb-0">24</h3>
+          </div>
         </div>
-        <i class="fas fa-clock fa-3x text-primary op-5"></i>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card-glass d-flex align-items-center justify-content-between">
-        <div>
-          <h5 class="mb-0 text-muted">New Requests</h5>
-          <h2 class="fw-bold mb-0 mt-2 text-warning">3</h2>
+    <div class="col-lg-3 col-md-6">
+      <div class="card-glass">
+        <div class="d-flex align-items-center">
+          <div class="stat-icon icon-warning me-3">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <p class="mb-0 opacity-75 small">Pending Requests</p>
+            <h3 class="fw-bold mb-0">8</h3>
+          </div>
         </div>
-        <i class="fas fa-user-plus fa-3x text-warning op-5"></i>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card-glass d-flex align-items-center justify-content-between">
-        <div>
-          <h5 class="mb-0 text-muted">Total Services</h5>
-          <h2 class="fw-bold mb-0 mt-2">10</h2>
+    <div class="col-lg-3 col-md-6">
+      <div class="card-glass">
+        <div class="d-flex align-items-center">
+          <div class="stat-icon icon-info me-3">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <div>
+            <p class="mb-0 opacity-75 small">Monthly Revenue</p>
+            <h3 class="fw-bold mb-0">₹45K</h3>
+          </div>
         </div>
-        <i class="fas fa-dumbbell fa-3x text-info op-5"></i>
       </div>
     </div>
   </div>
 
-  <!-- Quick Actions -->
+  <!-- Main Content Row -->
   <div class="row g-4">
-    <div class="col-md-6">
+    <!-- Quick Actions -->
+    <div class="col-lg-6">
       <div class="card-glass h-100">
-        <h4 class="mb-4 border-bottom pb-2">Quick Actions</h4>
-        <div class="d-grid gap-3">
-          <a href="/fit_addavailability" class="glass-btn text-center">
-            <i class="fas fa-clock me-2"></i> Update Real-time Status
-          </a>
-          <a href="/view_added_SLOT" class="glass-btn text-center">
-            <i class="fas fa-plus-circle me-2"></i> Manage Slots
-          </a>
-          <a href="/fitness_view_appointments" class="glass-btn text-center">
-            <i class="fas fa-list-check me-2"></i> View New Bookings
-          </a>
+        <h5 class="fw-bold mb-4">
+          <i class="fas fa-bolt text-warning me-2"></i>Quick Actions
+        </h5>
+        <div class="row g-3">
+          <div class="col-6">
+            <a href="/fitness_view_appointments/" class="btn btn-gym w-100 py-3">
+              <i class="fas fa-clipboard-list me-2"></i>New Bookings
+            </a>
+          </div>
+          <div class="col-6">
+            <a href="/view_added_SLOT/" class="btn btn-gym w-100 py-3">
+              <i class="fas fa-calendar-alt me-2"></i>Manage Slots
+            </a>
+          </div>
+          <div class="col-6">
+            <a href="/fitness_add_Services/" class="btn btn-gym w-100 py-3">
+              <i class="fas fa-plus-circle me-2"></i>Add Class
+            </a>
+          </div>
+          <div class="col-6">
+            <a href="/fitness_add_offers/" class="btn btn-gym w-100 py-3">
+              <i class="fas fa-percentage me-2"></i>Create Offer
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+
+    <!-- Today's Schedule -->
+    <div class="col-lg-6">
       <div class="card-glass h-100">
-        <h4 class="mb-4 border-bottom pb-2">Recent Notifications</h4>
+        <h5 class="fw-bold mb-4">
+          <i class="fas fa-calendar-day text-info me-2"></i>Today's Schedule
+        </h5>
+        <div class="schedule-item d-flex align-items-center p-3 mb-2"
+          style="background: rgba(255,255,255,0.05); border-radius: 10px;">
+          <div class="time-badge me-3 text-center" style="min-width: 60px;">
+            <small class="d-block opacity-75">6:00</small>
+            <strong>AM</strong>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">Morning Yoga</h6>
+            <small class="opacity-75">12 participants</small>
+          </div>
+          <span class="badge bg-success">Active</span>
+        </div>
+        <div class="schedule-item d-flex align-items-center p-3 mb-2"
+          style="background: rgba(255,255,255,0.05); border-radius: 10px;">
+          <div class="time-badge me-3 text-center" style="min-width: 60px;">
+            <small class="d-block opacity-75">8:00</small>
+            <strong>AM</strong>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">HIIT Training</h6>
+            <small class="opacity-75">8 participants</small>
+          </div>
+          <span class="badge bg-warning text-dark">Upcoming</span>
+        </div>
+        <div class="schedule-item d-flex align-items-center p-3 mb-2"
+          style="background: rgba(255,255,255,0.05); border-radius: 10px;">
+          <div class="time-badge me-3 text-center" style="min-width: 60px;">
+            <small class="d-block opacity-75">5:00</small>
+            <strong>PM</strong>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">Weight Training</h6>
+            <small class="opacity-75">15 participants</small>
+          </div>
+          <span class="badge bg-secondary">Scheduled</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="d-flex align-items-center border-bottom border-light pb-2 mb-2">
-          <i class="fas fa-bell text-info me-3 fa-2x"></i>
-          <div>
-            <h6 class="mb-0">New Booking Request</h6>
-            <small class="text-muted">User 'John' requested a slot.</small>
+  <!-- Second Row -->
+  <div class="row g-4 mt-2">
+    <!-- Available Classes -->
+    <div class="col-lg-4">
+      <div class="card-glass h-100">
+        <h5 class="fw-bold mb-4">
+          <i class="fas fa-running text-success me-2"></i>Popular Classes
+        </h5>
+        <div class="class-item d-flex align-items-center mb-3">
+          <div class="class-icon me-3 p-2 rounded" style="background: linear-gradient(135deg, #e94560, #ff6b6b);">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">CrossFit</h6>
+            <small class="opacity-75">25 bookings</small>
           </div>
         </div>
-
-        <div class="d-flex align-items-center border-bottom border-light pb-2 mb-2">
-          <i class="fas fa-info-circle text-warning me-3 fa-2x"></i>
-          <div>
-            <h6 class="mb-0">Offer Expiring Soon</h6>
-            <small class="text-muted">Summer pack expires in 2 days.</small>
+        <div class="class-item d-flex align-items-center mb-3">
+          <div class="class-icon me-3 p-2 rounded" style="background: linear-gradient(135deg, #00b894, #55efc4);">
+            <i class="fas fa-spa"></i>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">Yoga</h6>
+            <small class="opacity-75">18 bookings</small>
           </div>
         </div>
+        <div class="class-item d-flex align-items-center mb-3">
+          <div class="class-icon me-3 p-2 rounded" style="background: linear-gradient(135deg, #74b9ff, #0984e3);">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="flex-grow-1">
+            <h6 class="mb-0">Cardio</h6>
+            <small class="opacity-75">22 bookings</small>
+          </div>
+        </div>
+        <a href="/fitness_viewServices/" class="btn btn-outline-light btn-sm w-100 mt-3">
+          View All Classes <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="col-lg-4">
+      <div class="card-glass h-100">
+        <h5 class="fw-bold mb-4">
+          <i class="fas fa-bell text-warning me-2"></i>Recent Activity
+        </h5>
+        <div class="activity-item d-flex mb-3">
+          <div class="activity-icon me-3">
+            <i class="fas fa-user-plus text-success"></i>
+          </div>
+          <div>
+            <p class="mb-0 small">New booking received</p>
+            <small class="opacity-50">2 minutes ago</small>
+          </div>
+        </div>
+        <div class="activity-item d-flex mb-3">
+          <div class="activity-icon me-3">
+            <i class="fas fa-credit-card text-info"></i>
+          </div>
+          <div>
+            <p class="mb-0 small">Payment received - ₹2,500</p>
+            <small class="opacity-50">15 minutes ago</small>
+          </div>
+        </div>
+        <div class="activity-item d-flex mb-3">
+          <div class="activity-icon me-3">
+            <i class="fas fa-check-circle text-success"></i>
+          </div>
+          <div>
+            <p class="mb-0 small">Booking approved</p>
+            <small class="opacity-50">1 hour ago</small>
+          </div>
+        </div>
+        <div class="activity-item d-flex mb-3">
+          <div class="activity-icon me-3">
+            <i class="fas fa-star text-warning"></i>
+          </div>
+          <div>
+            <p class="mb-0 small">New 5-star review</p>
+            <small class="opacity-50">3 hours ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Offers -->
+    <div class="col-lg-4">
+      <div class="card-glass h-100">
+        <h5 class="fw-bold mb-4">
+          <i class="fas fa-tags text-danger me-2"></i>Active Offers
+        </h5>
+        <div class="offer-item p-3 mb-3"
+          style="background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(255, 107, 107, 0.1)); border-radius: 10px; border-left: 4px solid #e94560;">
+          <h6 class="mb-1">Summer Special</h6>
+          <p class="mb-0 small opacity-75">20% off on all memberships</p>
+          <small class="text-warning">Expires in 5 days</small>
+        </div>
+        <div class="offer-item p-3 mb-3"
+          style="background: linear-gradient(135deg, rgba(0, 184, 148, 0.2), rgba(85, 239, 196, 0.1)); border-radius: 10px; border-left: 4px solid #00b894;">
+          <h6 class="mb-1">Refer a Friend</h6>
+          <p class="mb-0 small opacity-75">Get 1 month free</p>
+          <small class="text-success">Always active</small>
+        </div>
+        <a href="/fitness_add_offers/" class="btn btn-outline-light btn-sm w-100 mt-3">
+          Create New Offer <i class="fas fa-plus ms-2"></i>
+        </a>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # Django
 *.log
 local_settings.py
@@ -25,3 +26,12 @@ media/
 .env
 venv/
 env/
+
+node_modules/
+.env
+dist/
+build/
+media/
+db.sqlite3
+__pycache__/
+*.pyc
