@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/myapp/views.py" description="def fitness_edit_availability(request,id):&#10;    d= ..." line="1063" />
+    <bookmark url="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_availability.html" description="&lt;button type=&quot;submit&quot;&gt;Edit Status&lt;/button&gt;" line="40" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a879480c-18b8-4ec5-9293-0dc733aacb8d" name="Default" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5659495">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/myapp/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="1735" column="23" lean-forward="false" selection-start-line="1735" selection-start-column="23" selection-end-line="1735" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#2664#3394#0" expanded="false" />
+                    <element signature="e#3724#3835#0" expanded="false" />
+                    <element signature="e#3936#4047#0" expanded="false" />
+                    <element signature="e#4146#4281#0" expanded="false" />
+                    <element signature="e#5018#5389#0" expanded="false" />
+                    <element signature="e#5489#5569#0" expanded="false" />
+                    <element signature="e#5665#5796#0" expanded="false" />
+                    <element signature="e#5899#6099#0" expanded="false" />
+                    <element signature="e#6199#6505#0" expanded="false" />
+                    <element signature="e#6597#6703#0" expanded="false" />
+                    <element signature="e#6994#7100#0" expanded="false" />
+                    <element signature="e#7192#8893#0" expanded="false" />
+                    <element signature="e#10223#11464#0" expanded="false" />
+                    <element signature="e#13727#13808#0" expanded="false" />
+                    <element signature="e#13894#14055#0" expanded="false" />
+                    <element signature="e#15803#15889#0" expanded="false" />
+                    <element signature="e#15972#16165#0" expanded="false" />
+                    <element signature="e#16256#16539#0" expanded="false" />
+                    <element signature="e#16630#16738#0" expanded="false" />
+                    <element signature="e#16827#16935#0" expanded="false" />
+                    <element signature="e#17260#17547#0" expanded="false" />
+                    <element signature="e#19293#20019#0" expanded="false" />
+                    <element signature="e#20093#20218#0" expanded="false" />
+                    <element signature="e#20297#21510#0" expanded="false" />
+                    <element signature="e#21589#22295#0" expanded="false" />
+                    <element signature="e#22602#23382#0" expanded="false" />
+                    <element signature="e#23426#23504#0" expanded="false" />
+                    <element signature="e#23585#24257#0" expanded="false" />
+                    <element signature="e#24336#24484#0" expanded="false" />
+                    <element signature="e#24565#25195#0" expanded="false" />
+                    <element signature="e#25237#25312#0" expanded="false" />
+                    <element signature="e#25388#25862#0" expanded="false" />
+                    <element signature="e#25939#26098#0" expanded="false" />
+                    <element signature="e#26178#26675#0" expanded="false" />
+                    <element signature="e#26757#26830#0" expanded="false" />
+                    <element signature="e#26918#27048#0" expanded="false" />
+                    <element signature="e#27746#28258#0" expanded="false" />
+                    <element signature="e#28298#29029#0" expanded="false" />
+                    <element signature="e#29252#29993#0" expanded="false" />
+                    <element signature="e#30030#30156#0" expanded="false" />
+                    <element signature="e#30197#31419#0" expanded="false" />
+                    <element signature="e#32247#32818#0" expanded="false" />
+                    <element signature="e#33004#33813#0" expanded="false" />
+                    <element signature="e#34048#34774#0" expanded="false" />
+                    <element signature="e#34821#34901#0" expanded="false" />
+                    <element signature="e#34945#35095#0" expanded="false" />
+                    <element signature="e#35135#35793#0" expanded="false" />
+                    <element signature="e#35832#36006#0" expanded="false" />
+                    <element signature="e#36055#36666#0" expanded="false" />
+                    <element signature="e#36717#36803#0" expanded="false" />
+                    <element signature="e#36844#37413#0" expanded="false" />
+                    <element signature="e#37640#38178#0" expanded="false" />
+                    <element signature="e#38225#38307#0" expanded="false" />
+                    <element signature="e#38346#39121#0" expanded="false" />
+                    <element signature="e#39367#40180#0" expanded="false" />
+                    <element signature="e#41179#41689#0" expanded="false" />
+                    <element signature="e#43008#43280#0" expanded="false" />
+                    <element signature="e#43314#43826#0" expanded="false" />
+                    <element signature="e#43865#44596#0" expanded="false" />
+                    <element signature="e#49562#49595#0" expanded="false" />
+                    <element signature="e#56336#56368#0" expanded="false" />
+                    <element signature="e#57716#58467#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/nearlive/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1343">
+                  <caret line="80" column="28" lean-forward="false" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/myapp/urls.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1989">
+                  <caret line="120" column="36" lean-forward="false" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/nearlive/urls.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="admin_home.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/adminFolder/admin_home.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="272">
+                  <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="adminindex.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/adminFolder/adminindex.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="901">
+                  <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="shop home.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/shopFolder/shop home.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="shop_home.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/shopFolder/shop_home.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="9299">
+                  <caret line="547" column="0" lean-forward="false" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+                  <folding>
+                    <marker date="1764070203953" expanded="false" signature="9573:9587" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="10043:10056" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="10450:10464" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="23664:23690" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="24500:24526" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="25336:25362" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="26172:26198" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="27412:27424" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="28785:28797" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="30166:30178" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="35203:35216" ph="..." />
+                    <marker date="1764070203953" expanded="false" signature="35770:35776" ph="©" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/myapp/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3298">
+                  <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/myapp/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="314">
+                  <caret line="2199" column="7" lean-forward="false" selection-start-line="2199" selection-start-column="7" selection-end-line="2199" selection-end-column="7" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#2664#3394#0" expanded="false" />
+                    <element signature="e#3724#3835#0" expanded="false" />
+                    <element signature="e#3936#4047#0" expanded="false" />
+                    <element signature="e#4146#4281#0" expanded="false" />
+                    <element signature="e#5018#5389#0" expanded="false" />
+                    <element signature="e#5489#5569#0" expanded="false" />
+                    <element signature="e#5665#5796#0" expanded="false" />
+                    <element signature="e#5899#6099#0" expanded="false" />
+                    <element signature="e#6199#6505#0" expanded="false" />
+                    <element signature="e#6597#6703#0" expanded="false" />
+                    <element signature="e#6994#7100#0" expanded="false" />
+                    <element signature="e#7192#8893#0" expanded="false" />
+                    <element signature="e#10223#11464#0" expanded="false" />
+                    <element signature="e#13727#13808#0" expanded="false" />
+                    <element signature="e#13894#14055#0" expanded="false" />
+                    <element signature="e#15803#15889#0" expanded="false" />
+                    <element signature="e#15972#16165#0" expanded="false" />
+                    <element signature="e#16256#16539#0" expanded="false" />
+                    <element signature="e#16630#16738#0" expanded="false" />
+                    <element signature="e#16827#16935#0" expanded="false" />
+                    <element signature="e#17260#17547#0" expanded="false" />
+                    <element signature="e#19293#20019#0" expanded="false" />
+                    <element signature="e#20093#20218#0" expanded="false" />
+                    <element signature="e#20297#21510#0" expanded="false" />
+                    <element signature="e#21589#22295#0" expanded="false" />
+                    <element signature="e#22602#23382#0" expanded="false" />
+                    <element signature="e#23426#23504#0" expanded="false" />
+                    <element signature="e#23585#24257#0" expanded="false" />
+                    <element signature="e#24336#24484#0" expanded="false" />
+                    <element signature="e#24565#25195#0" expanded="false" />
+                    <element signature="e#25237#25312#0" expanded="false" />
+                    <element signature="e#25388#25862#0" expanded="false" />
+                    <element signature="e#25939#26098#0" expanded="false" />
+                    <element signature="e#26178#26675#0" expanded="false" />
+                    <element signature="e#26757#26830#0" expanded="false" />
+                    <element signature="e#26918#27048#0" expanded="false" />
+                    <element signature="e#27746#28258#0" expanded="false" />
+                    <element signature="e#28298#29029#0" expanded="false" />
+                    <element signature="e#29252#29993#0" expanded="false" />
+                    <element signature="e#30030#30156#0" expanded="false" />
+                    <element signature="e#30197#31419#0" expanded="false" />
+                    <element signature="e#32247#32818#0" expanded="false" />
+                    <element signature="e#33004#33813#0" expanded="false" />
+                    <element signature="e#34048#34774#0" expanded="false" />
+                    <element signature="e#34821#34901#0" expanded="false" />
+                    <element signature="e#34945#35095#0" expanded="false" />
+                    <element signature="e#35135#35793#0" expanded="false" />
+                    <element signature="e#35832#36006#0" expanded="false" />
+                    <element signature="e#36055#36666#0" expanded="false" />
+                    <element signature="e#36717#36803#0" expanded="false" />
+                    <element signature="e#36844#37413#0" expanded="false" />
+                    <element signature="e#37640#38178#0" expanded="false" />
+                    <element signature="e#38225#38307#0" expanded="false" />
+                    <element signature="e#38346#39121#0" expanded="false" />
+                    <element signature="e#39367#40180#0" expanded="false" />
+                    <element signature="e#41179#41689#0" expanded="false" />
+                    <element signature="e#43008#43280#0" expanded="false" />
+                    <element signature="e#43314#43826#0" expanded="false" />
+                    <element signature="e#43865#44596#0" expanded="false" />
+                    <element signature="e#49562#49595#0" expanded="false" />
+                    <element signature="e#56336#56368#0" expanded="false" />
+                    <element signature="e#57716#58467#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/myapp/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2346">
+                  <caret line="139" column="12" lean-forward="false" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/nearlive/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1326">
+                  <caret line="79" column="8" lean-forward="false" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>../../static/</find>
+      <find>adminindex</find>
+      <find>/img/user.jpg</find>
+      <find>world</find>
+      <find>img</find>
+      <find>container-xxl</find>
+      <find>fitness_add_specialisation</find>
+      <find>District</find>
+      <find>slot</find>
+      <find>user_view_requeststatus</find>
+      <find>chat_view</find>
+      <find>toid</find>
+      <find>shop_view_orders</find>
+      <find>shop</find>
+      <find>fitness_view_approved</find>
+      <find>provider_viewApproved_Requests</find>
+      <find>service_changepassword</find>
+      <find>user_view_centers</find>
+      <find>provider_viewServices</find>
+      <find>provider_addServices</find>
+      <find>provider_addavailability</find>
+      <find>fitness_view_payments</find>
+      <find>darkpan</find>
+      <find>darkpa</find>
+      <find>seo</find>
+      <find>login</find>
+      <find>login_</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>/static/</replace>
+      <replace>/static/hometemp/img</replace>
+      <replace>container-fluid</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_availabilitystatus.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_category.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_Requests.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_review.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_services.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/viewProfile.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/service_provider_home.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness home.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/main_home_page.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitviewProfile.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fit_view_special.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_availability.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_facility.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_offers.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_services.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_slot.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_add_specialisation.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_change_psw.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_facility.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_offers.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_services.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_slot.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_specialisation.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_editProfile.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_facility.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_offers.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_availability.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_availabilitystatus.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slots.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slotbookings.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_services.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_review.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_payments.html" />
+        <option value="$PROJECT_DIR$/myapp/models.py" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/FitChat.html" />
+        <option value="$PROJECT_DIR$/templates/shopFolder/shopChat.html" />
+        <option value="$PROJECT_DIR$/templates/shopFolder/shop_view_orders.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/providerChat.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_view_ApprovedRequests.html" />
+        <option value="$PROJECT_DIR$/static/loginss/style.css" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
+        <option value="$PROJECT_DIR$/myapp/urls.py" />
+        <option value="$PROJECT_DIR$/templates/bussiness_account_reg.html" />
+        <option value="$PROJECT_DIR$/templates/login index.html" />
+        <option value="$PROJECT_DIR$/templates/Service Provider folder/provider_edit_services.html" />
+        <option value="$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slotbookingsapproved.html" />
+        <option value="$PROJECT_DIR$/nearlive/settings.py" />
+        <option value="$PROJECT_DIR$/nearlive/urls.py" />
+        <option value="$PROJECT_DIR$/templates/adminFolder/adminindex.html" />
+        <option value="$PROJECT_DIR$/templates/shopFolder/shop_home.html" />
+        <option value="$PROJECT_DIR$/myapp/views.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="736" />
+  </component>
+  <component name="ProjectId" id="36kBF5rAMTTZZ01BXcBI1WCgGTj" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nearlive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nearlive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/PycharmProjects/nearlive/static/stock&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\PycharmProjects\nearlive\static\stock" />
+      <recent name="C:\Users\ASUS\PycharmProjects\nearlive\templates" />
+      <recent name="C:\Users\nivetha\PycharmProjects\nearlive\templates" />
+      <recent name="C:\Users\nivetha\PycharmProjects\nearlive\static\loginss" />
+      <recent name="C:\Users\nivetha\PycharmProjects\nearlive\templates\Service Provider folder" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nivetha\PycharmProjects\nearlive\templates\fitnessFolder" />
+      <recent name="C:\Users\nivetha\PycharmProjects\nearlive\templates\adminFolder" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nearlive" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nearlive" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nearlive" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nearlive" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="nearlive" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="false" name="nearlive" type="Python.DjangoServer" factoryName="Django server" singleton="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="nearlive.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\DELL\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nearlive" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="0.0.0.0" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/loginindex" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="nearlive" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="nearlive" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="nearlive" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a879480c-18b8-4ec5-9293-0dc733aacb8d" name="Default" comment="" />
+      <created>1760521281252</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760521281252</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="736" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24281392" sideWeight="0.48727274" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37645108" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24918918" sideWeight="0.48363635" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2106136" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24918918" sideWeight="0.5163636" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903846" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>67</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>483</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>459</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/models.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>720</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/models.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>950</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>960</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>1093</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>173</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>1351</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>2146</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/models.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/myapp/views.py</url>
+          <line>2195</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="23" column="60" lean-forward="false" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/main_home_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitviewProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fit_view_special.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="38" column="15" lean-forward="true" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_availability.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_facility.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="76" column="14" lean-forward="false" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_offers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="124" column="14" lean-forward="false" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_specialisation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="43" column="14" lean-forward="false" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_change_psw.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_facility.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="87" column="14" lean-forward="false" selection-start-line="87" selection-start-column="14" selection-end-line="87" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_offers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="125" column="14" lean-forward="false" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_slot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="94" column="14" lean-forward="false" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_specialisation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="74" column="14" lean-forward="false" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_editProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="102" column="59" lean-forward="false" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_facility.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_edit_availability.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slots.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="138" column="54" lean-forward="false" selection-start-line="135" selection-start-column="49" selection-end-line="138" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slotbookings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="420" column="14" lean-forward="false" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="397" column="14" lean-forward="false" selection-start-line="397" selection-start-column="14" selection-end-line="397" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_payments.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="372" column="14" lean-forward="false" selection-start-line="372" selection-start-column="14" selection-end-line="372" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_offers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="80" column="166" lean-forward="true" selection-start-line="80" selection-start-column="166" selection-end-line="80" selection-end-column="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Python310/Lib/site-packages/django/db/models/base.py" />
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_add_slot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1410">
+          <caret line="47" column="11" lean-forward="false" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Python310/Lib/site-packages/django/db/models/sql/compiler.py" />
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_availabilitystatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/FitChat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11820">
+          <caret line="394" column="0" lean-forward="false" selection-start-line="394" selection-start-column="0" selection-end-line="449" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/shopFolder/shopChat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13290">
+          <caret line="443" column="5" lean-forward="false" selection-start-line="443" selection-start-column="5" selection-end-line="443" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/shopFolder/shop_view_orders.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2580">
+          <caret line="86" column="125" lean-forward="false" selection-start-line="86" selection-start-column="125" selection-end-line="86" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Service Provider folder/providerChat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12000">
+          <caret line="400" column="29" lean-forward="false" selection-start-line="400" selection-start-column="29" selection-end-line="400" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Service Provider folder/provider_view_ApprovedRequests.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="80" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/loginss/style.css" />
+    <entry file="file://$PROJECT_DIR$/../../../../Python312/Lib/site-packages/textblob/blob.py" />
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="33" column="34" lean-forward="false" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Service Provider folder/provider_change_psw.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Service Provider folder/provider_view_services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="72" column="59" lean-forward="true" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Service Provider folder/provider_edit_services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="67" column="57" lean-forward="false" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bussiness_account_reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8304">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="139" column="12" lean-forward="false" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fitnessFolder/fitness_view_slotbookingsapproved.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="161" column="24" lean-forward="false" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/adminFolder/admin_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nearlive/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="79" column="8" lean-forward="false" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nearlive/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/adminFolder/adminindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/shopFolder/shop home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/shopFolder/shop_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9299">
+          <caret line="547" column="0" lean-forward="false" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+          <folding>
+            <marker date="1764070203953" expanded="false" signature="9573:9587" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="10043:10056" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="10450:10464" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="23664:23690" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="24500:24526" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="25336:25362" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="26172:26198" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="27412:27424" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="28785:28797" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="30166:30178" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="35203:35216" ph="..." />
+            <marker date="1764070203953" expanded="false" signature="35770:35776" ph="©" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="120" column="36" lean-forward="false" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="2199" column="7" lean-forward="false" selection-start-line="2199" selection-start-column="7" selection-end-line="2199" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#2664#3394#0" expanded="false" />
+            <element signature="e#3724#3835#0" expanded="false" />
+            <element signature="e#3936#4047#0" expanded="false" />
+            <element signature="e#4146#4281#0" expanded="false" />
+            <element signature="e#5018#5389#0" expanded="false" />
+            <element signature="e#5489#5569#0" expanded="false" />
+            <element signature="e#5665#5796#0" expanded="false" />
+            <element signature="e#5899#6099#0" expanded="false" />
+            <element signature="e#6199#6505#0" expanded="false" />
+            <element signature="e#6597#6703#0" expanded="false" />
+            <element signature="e#6994#7100#0" expanded="false" />
+            <element signature="e#7192#8893#0" expanded="false" />
+            <element signature="e#10223#11464#0" expanded="false" />
+            <element signature="e#13727#13808#0" expanded="false" />
+            <element signature="e#13894#14055#0" expanded="false" />
+            <element signature="e#15803#15889#0" expanded="false" />
+            <element signature="e#15972#16165#0" expanded="false" />
+            <element signature="e#16256#16539#0" expanded="false" />
+            <element signature="e#16630#16738#0" expanded="false" />
+            <element signature="e#16827#16935#0" expanded="false" />
+            <element signature="e#17260#17547#0" expanded="false" />
+            <element signature="e#19293#20019#0" expanded="false" />
+            <element signature="e#20093#20218#0" expanded="false" />
+            <element signature="e#20297#21510#0" expanded="false" />
+            <element signature="e#21589#22295#0" expanded="false" />
+            <element signature="e#22602#23382#0" expanded="false" />
+            <element signature="e#23426#23504#0" expanded="false" />
+            <element signature="e#23585#24257#0" expanded="false" />
+            <element signature="e#24336#24484#0" expanded="false" />
+            <element signature="e#24565#25195#0" expanded="false" />
+            <element signature="e#25237#25312#0" expanded="false" />
+            <element signature="e#25388#25862#0" expanded="false" />
+            <element signature="e#25939#26098#0" expanded="false" />
+            <element signature="e#26178#26675#0" expanded="false" />
+            <element signature="e#26757#26830#0" expanded="false" />
+            <element signature="e#26918#27048#0" expanded="false" />
+            <element signature="e#27746#28258#0" expanded="false" />
+            <element signature="e#28298#29029#0" expanded="false" />
+            <element signature="e#29252#29993#0" expanded="false" />
+            <element signature="e#30030#30156#0" expanded="false" />
+            <element signature="e#30197#31419#0" expanded="false" />
+            <element signature="e#32247#32818#0" expanded="false" />
+            <element signature="e#33004#33813#0" expanded="false" />
+            <element signature="e#34048#34774#0" expanded="false" />
+            <element signature="e#34821#34901#0" expanded="false" />
+            <element signature="e#34945#35095#0" expanded="false" />
+            <element signature="e#35135#35793#0" expanded="false" />
+            <element signature="e#35832#36006#0" expanded="false" />
+            <element signature="e#36055#36666#0" expanded="false" />
+            <element signature="e#36717#36803#0" expanded="false" />
+            <element signature="e#36844#37413#0" expanded="false" />
+            <element signature="e#37640#38178#0" expanded="false" />
+            <element signature="e#38225#38307#0" expanded="false" />
+            <element signature="e#38346#39121#0" expanded="false" />
+            <element signature="e#39367#40180#0" expanded="false" />
+            <element signature="e#41179#41689#0" expanded="false" />
+            <element signature="e#43008#43280#0" expanded="false" />
+            <element signature="e#43314#43826#0" expanded="false" />
+            <element signature="e#43865#44596#0" expanded="false" />
+            <element signature="e#49562#49595#0" expanded="false" />
+            <element signature="e#56336#56368#0" expanded="false" />
+            <element signature="e#57716#58467#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
