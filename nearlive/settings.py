@@ -151,5 +151,4 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-AUTO_CREATE_ADMIN = True
 
