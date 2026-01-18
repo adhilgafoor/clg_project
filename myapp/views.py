@@ -33,7 +33,11 @@ def loginindex(request):
         if user is not None:
             login(request,user)
             request.session['lid']=user.id
-            if user.groups.filter(name='admin').exists():
+            if user.is_superuser:
+                 messages.success(request, "Admin loged in seccessfully.")
+                 return redirect('/adminhome')
+
+            elif user.groups.filter(name='admin').exists():
                 messages.success(request, "Admin loged in seccessfully.")
                 return redirect('/adminhome')
 
