@@ -35,3 +35,8 @@ media/
 db.sqlite3
 __pycache__/
 *.pyc
+node_modules/
+.env
+build/
+dist/
+__pycache__/
